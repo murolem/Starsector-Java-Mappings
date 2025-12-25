@@ -10,6 +10,16 @@ Contains Mappings for Starsector obfuscated JARs to something that's humanly rea
 > [!WARNING]  
 > This is a **VERY** early work-in-progress project and by no means done by a professional (I'm pretty novice at Java, obfuscation technics and modding).
 
+
+### Mapping status
+
+| JAR                 | Progress |
+|---------------------|----------|
+| `starfarer_obj.jar` | Minimal  |
+| `fs.common_obf.jar` | Minimal  |
+|                     |          |
+
+
 ## About
 
 The main JAR that contains game-related code is `starfarer_obf.jar`. `starfarer.api.jar` is the unobfuscated version of that jar containing limited subset of code. The project aims to map out the obfuscated JARs (`starfarer_obf.jar` and any other game JAR) for modding purposes.
@@ -29,9 +39,12 @@ All mappings are located in `mappings` folder, divided into game versions. Mappi
 ## Mapping & mapping conventions
 
 - Mappings I'm sure about are named normally.
-- Mappings I'm unsure about start with `Zzz` for classes/interfaces/enums/etc. or `zzz` for class props/variables/etc (do not confuse with `zzz` package name used in the JAR namespace).
+- Mappings I'm unsure about end with `Zzz` (do not confuse with `zzz` package name used in the JAR namespace).
 - Mappings produced by Recaf's "illegal name resolution" are stored under `mapped` mapping project. They have generic names like  `method1364`, `field8381`, etc. They are eventually moved into the main space.
-- Mappings created with use of AI (don't shame me try to map those math methods yourself!) start with `Zai` for classes/interfaces/enums/etc. or `zai` for class props/variables/etc. Javadoc written by AI is prefixed with "AI:".
+- Mappings created with use of AI (don't shame me try to map those math methods yourself!) end with `Zai`. Javadoc written by AI start with "AI:".
+
+**Other cases:**
+- Methods that only call the same method with same args and do nothing else are suffixed with `__COPY`. Not sure if those are the results from obfuscation or if they exist in the original code.
 
 ## Applying mappings
 

@@ -111,24 +111,29 @@ CLASS com/fs/graphics/F
 		METHOD super method81 (ZZZ)V
 		METHOD void method88 ()V
 		METHOD ø00000 method86 ()Z
-CLASS com/fs/graphics/float mapped/Class261
-	FIELD class field11408 Lorg/apache/log4j/Logger;
-	FIELD float field11404 Z
-	FIELD new field11412 I
-	FIELD null field11406 Z
-	FIELD Ó00000 field11407 I
-	FIELD Ô00000 field11411 I
-	FIELD ö00000 field11403 Ljava/lang/String;
-	FIELD Ö00000 field11410 I
-	FIELD õ00000 field11405 Z
-	FIELD Ø00000 field11409 I
+CLASS com/fs/graphics/float mapped/DisplayInitializerZai
+	FIELD class logger Lorg/apache/log4j/Logger;
+	FIELD float isFullscreenZai Z
+	FIELD new forcedRefreshRateZai I
+	FIELD null isVSyncEnabledZai Z
+	FIELD o00000 pendingInitializationZzz Z
+	FIELD Ó00000 screenWidthZai I
+	FIELD Ô00000 refreshRateZai I
+	FIELD ö00000 windowTitleZai Ljava/lang/String;
+	FIELD Ö00000 antiAliasingSamplesZai I
+	FIELD õ00000 isMouseGrabbedZai Z
+	FIELD OO0000 screenHeightZai I
+	FIELD Ø00000 stencilBitsZai I
 	METHOD Ó00000 method1096 ()Ljava/lang/String;
 	METHOD Ó00000 method1090 (I)V
 	METHOD Ó00000 method1089 (Z)V
 	METHOD Ò00000 method1081 ()I
 	METHOD Ò00000 method1082 (I)V
 	METHOD Ò00000 method1087 (Z)V
-	METHOD Ò00000 method1080 (ZII)V
+	METHOD Ò00000 initializeDisplayZai (ZII)V
+		ARG 1 forceDisplayModeZai
+		ARG 2 widthZai
+		ARG 3 heightZai
 	METHOD ô00000 method1094 ()Z
 	METHOD Ö00000 method1093 ()I
 	METHOD Ö00000 method1085 (I)V
@@ -138,7 +143,10 @@ CLASS com/fs/graphics/float mapped/Class261
 	METHOD super method1083 (I)V
 	METHOD super method1091 (Ljava/lang/String;)V
 	METHOD super method1097 (Z)V
-	METHOD super method1086 (ZII)Z
+	METHOD super setupDisplayModeZai (ZII)Z
+		ARG 1 forceDisplayModeZai
+		ARG 2 widthZai
+		ARG 3 heightZai
 	METHOD void method1092 ()Z
 CLASS com/fs/graphics/I
 	METHOD super method1 (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
@@ -157,6 +165,7 @@ CLASS com/fs/graphics/L
 	METHOD Ó00000 method95 (Ljava/lang/String;)V
 	METHOD Ô00000 method99 (Ljava/lang/String;)[B
 	METHOD Ö00000 method94 (Ljava/lang/String;)V
+CLASS com/fs/graphics/LayeredRenderable
 CLASS com/fs/graphics/LayeredRenderer
 	CLASS o
 		FIELD Ó00000 field9900 Lcom/fs/graphics/LayeredRenderer$o;
@@ -164,12 +173,12 @@ CLASS com/fs/graphics/LayeredRenderer
 		FIELD super field9899 Lcom/fs/graphics/LayeredRenderer$o;
 CLASS com/fs/graphics/M
 	METHOD super method1 (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
-CLASS com/fs/graphics/Object
+CLASS com/fs/graphics/Object com/fs/graphics/TextureZzz
 	FIELD for field11365 F
 	FIELD int field11367 Ljava/lang/String;
 	FIELD Ò00000 field11368 Ljava/lang/String;
 	FIELD ô00000 field11362 I
-	FIELD Ô00000 field11364 I
+	FIELD Ô00000 widthZzz I
 	FIELD ö00000 field11361 I
 	FIELD Õ00000 field11372 Ljava/awt/Color;
 	FIELD ÒO0000 field11363 I
@@ -177,9 +186,10 @@ CLASS com/fs/graphics/Object
 	FIELD public field11373 Ljava/awt/Color;
 	FIELD return field11370 I
 	FIELD Ø00000 field11369 Z
-	FIELD ø00000 field11366 F
+	FIELD ø00000 heightZzz F
 	METHOD for method1044 ()V
 	METHOD int method1043 ()V
+	METHOD o00000 getHeightZzz ()F
 	METHOD Ò00000 method1046 ()Ljava/awt/Color;
 	METHOD Ò00000 method1039 (I)V
 	METHOD Ò00000 method1049 (Ljava/awt/Color;)V
@@ -189,6 +199,7 @@ CLASS com/fs/graphics/Object
 	METHOD Ô00000 method1042 (I)V
 	METHOD ö00000 method1045 ()I
 	METHOD Õ00000 method1036 ()Ljava/lang/String;
+	METHOD Object getWidthZzz ()I
 	METHOD ÒO0000 method1041 ()F
 	METHOD public method1048 ()Ljava/awt/Color;
 	METHOD return method1037 ()V
@@ -291,6 +302,78 @@ CLASS com/fs/graphics/particle/OoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 CLASS com/fs/graphics/particle/TexturedLine
 	CLASS o
 		FIELD Ò00000 field10523 [Lcom/fs/graphics/particle/TexturedLine$o;
+CLASS com/fs/graphics/Sprite
+	FIELD alphaMult alphaMult F
+	FIELD angle angle F
+	FIELD blendDest blendDest I
+	FIELD blendSrc blendSrc I
+	FIELD centerX centerX F
+	FIELD centerY centerY F
+	FIELD color color Ljava/awt/Color;
+	FIELD colorLL colorLL Ljava/awt/Color;
+	FIELD colorLR colorLR Ljava/awt/Color;
+	FIELD colorUL colorUL Ljava/awt/Color;
+	FIELD colorUR colorUR Ljava/awt/Color;
+	FIELD height height F
+	FIELD offsetX offsetX I
+	FIELD offsetY offsetY I
+	FIELD texClamp texClamp Z
+	FIELD texHeight texHeight F
+	FIELD texture texture Lcom/fs/graphics/Object;
+	FIELD textureId textureId Ljava/lang/String;
+	FIELD texWidth texWidth F
+	FIELD texX texX F
+	FIELD texY texY F
+	FIELD width width F
+	METHOD <init> (Lcom/fs/graphics/Object;)V
+		ARG 1 texture
+	METHOD <init> (Lcom/fs/graphics/Object;Ljava/awt/Color;)V
+		ARG 1 texture
+		ARG 2 color
+	METHOD clone clone ()Ljava/lang/Object;
+	METHOD getAngle getAngle ()F
+	METHOD getAverageColor getAverageColor ()Ljava/awt/Color;
+	METHOD getColor getColor ()Ljava/awt/Color;
+	METHOD getHeight getHeight ()F
+	METHOD getImageHeight getImageHeight ()I
+	METHOD getImageWidth getImageWidth ()I
+	METHOD getTexture getTexture ()Lcom/fs/graphics/Object;
+	METHOD getWidth getWidth ()F
+	METHOD render render (FF)V
+		ARG 1 x
+		ARG 2 y
+	METHOD renderAtCenter renderAtCenter (FF)V
+		ARG 1 x
+		ARG 2 y
+	METHOD setAdditiveBlend setAdditiveBlend ()V
+	METHOD setAngle setAngle (F)V
+		ARG 1 angle
+	METHOD setBlendFunc setBlendFunc (II)V
+		ARG 1 blendSrc
+		ARG 2 blendDest
+	METHOD setCenter setCenter (FF)V
+		ARG 1 centerX
+		ARG 2 centerY
+	METHOD setCenterX setCenterX (F)V
+		ARG 1 centerX
+	METHOD setCenterY setCenterY (F)V
+		ARG 1 centerY
+	METHOD setColor setColor (Ljava/awt/Color;)V
+		ARG 1 color
+	METHOD setHeight setHeight (F)V
+		ARG 1 height
+	METHOD setNormalBlend setNormalBlend ()V
+	METHOD setOffset setOffset (II)V
+		ARG 1 offsetX
+		ARG 2 offsetY
+	METHOD setSize setSize (FF)V
+		ARG 1 width
+		ARG 2 height
+	METHOD setTexClamp setTexClamp (Z)V
+		ARG 1 texClamp
+	METHOD setTexture setTexture (Lcom/fs/graphics/Object;)V
+	METHOD setWidth setWidth (F)V
+		ARG 1 width
 CLASS com/fs/graphics/String
 	FIELD Ò00000 field11385 B
 	FIELD Ô00000 field11384 B
@@ -559,26 +642,51 @@ CLASS com/fs/graphics/TextureLoader
 	METHOD super method1060 (Ljava/lang/String;Ljava/awt/image/BufferedImage;)V
 	METHOD super method1059 (Ljava/lang/String;Ljava/lang/String;)V
 	METHOD super method1068 (Ljava/nio/ByteBuffer;Ljava/lang/String;)V
-CLASS com/fs/graphics/util/B
-	FIELD Ò00000 field11536 J
-	FIELD super field11535 J
-	METHOD class method1274 ()V
+CLASS com/fs/graphics/util/B com/fs/graphics/util/GraphicsUtilsZai
+	FIELD Ò00000 float1Zzz J
+	FIELD super timerResolution J
+	METHOD class popOrthoMatrixZai ()V
 	METHOD class method1277 (Ljava/awt/Color;F)Ljava/awt/Color;
-	METHOD new method1268 ()V
-	METHOD new method1269 (Ljava/awt/Color;)V
-	METHOD new method1270 (Ljava/awt/Color;F)V
+	METHOD new setTextureRepeatZai ()V
+	METHOD new setGLColorZai (Ljava/awt/Color;)V
+		ARG 0 color
+	METHOD new setGLColorWithAlphaMultiplierZai (Ljava/awt/Color;F)V
+		ARG 0 color
+		ARG 1 alphaMult
 	METHOD new method1279 (Ljava/awt/Color;I)Ljava/awt/Color;
-	METHOD new method1271 (Ljava/awt/Color;Ljava/awt/Color;)Ljava/awt/Color;
+	METHOD new addColorsZai (Ljava/awt/Color;Ljava/awt/Color;)Ljava/awt/Color;
+		ARG 0 color1
+		ARG 1 color2
+	METHOD o00000 pushOrthoMatrixZai (FFF)V
+		ARG 0 widthZai
+		ARG 1 heightZai
+		ARG 2 depthZai
+	METHOD o00000 pushCustomOrthoMatrixZai (FFFFF)V
+		ARG 0 leftZai
+		ARG 1 rightZai
+		ARG 2 bottomZai
+		ARG 3 topZai
+		ARG 4 depthZai
+	METHOD o00000 setGLColorWithCustomAlphaZai (Ljava/awt/Color;I)V
+		ARG 0 color
+		ARG 1 alpha
+	METHOD o00000 multiplyColorsZai (Ljava/awt/Color;Ljava/awt/Color;)Ljava/awt/Color;
+		ARG 0 color1
+		ARG 1 color2
+	METHOD o00000 lerpColorZai (Ljava/awt/Color;Ljava/awt/Color;F)Ljava/awt/Color;
+		ARG 0 color1
+		ARG 1 color2
+		ARG 2 t
 	METHOD Ó00000 method1275 ()V
 	METHOD Ó00000 method1283 (Ljava/awt/Color;)F
 	METHOD Ó00000 method1276 (Ljava/awt/Color;F)Ljava/awt/Color;
 	METHOD Ó00000 method1282 (Ljava/awt/Color;I)Ljava/awt/Color;
-	METHOD Ô00000 method1272 ()J
+	METHOD Ô00000 getMillisecondsZai ()J
 	METHOD Ô00000 method1281 (Ljava/awt/Color;)Ljava/awt/Color;
 	METHOD Ô00000 method1278 (Ljava/awt/Color;F)Ljava/awt/Color;
-	METHOD Ö00000 method1273 ()V
+	METHOD Ö00000 setup2DRenderingZai ()V
 	METHOD Ö00000 method1280 (Ljava/awt/Color;F)Ljava/awt/Color;
-	METHOD Ø00000 method1267 ()V
+	METHOD Ø00000 setTextureClampToEdgeZai ()V
 CLASS com/fs/graphics/util/ooOO
 	FIELD class field11540 Lcom/fs/graphics/util/ooOO$o;
 	FIELD new field11537 F
@@ -4083,7 +4191,7 @@ CLASS com/fs/starfarer/campaign/ui/MarketConditionsWidget
 	FIELD ÒöøO00 field5604 Ljava/util/List;
 	FIELD ôöøO00 field5600 Ljava/awt/Color;
 	FIELD ÔöøO00 field5601 Z
-	FIELD ôõøO00 zzzIsColony Z
+	FIELD ôõøO00 isColonyZzz Z
 	FIELD ÖöøO00 field5918 Ljava/awt/Color;
 	FIELD öõøO00 field5602 F
 	FIELD õöøO00 field5922 F
@@ -6242,7 +6350,7 @@ CLASS com/fs/starfarer/campaign/ui/OO0O
 	FIELD super field13709 Lcom/fs/starfarer/campaign/fleet/CargoData;
 	FIELD void field13708 F
 	METHOD new method1980 ()V
-CLASS com/fs/starfarer/campaign/ui/ooO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO com/fs/starfarer/campaign/ui/ZzzUiTheFuck
+CLASS com/fs/starfarer/campaign/ui/ooO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO com/fs/starfarer/campaign/ui/UiTheFuckZzz
 	FIELD for.super$do field5264 Lcom/fs/starfarer/ui/z;
 	FIELD ØoOo00 field5263 Lcom/fs/starfarer/campaign/ui/M;
 CLASS com/fs/starfarer/campaign/ui/oOO0
@@ -26145,7 +26253,7 @@ CLASS com/fs/starfarer/rpg/A
 CLASS com/fs/starfarer/rpg/Person
 	CLASS 1
 		METHOD super method800 (Lcom/fs/starfarer/api/loading/ContactTagSpec;Lcom/fs/starfarer/api/loading/ContactTagSpec;)I
-CLASS com/fs/starfarer/settings/A com/fs/starfarer/settings/ZZZSomeSettingClass
+CLASS com/fs/starfarer/settings/A com/fs/starfarer/settings/SomeSettingClassZzz
 	FIELD class field11149 F
 	FIELD new field11152 F
 	FIELD Ó00000 field11150 F
@@ -27101,7 +27209,7 @@ CLASS com/fs/starfarer/title/B/ooOO com/fs/starfarer/settings/ControlsButton
 	FIELD ØõÕo00 field2992 Z
 	FIELD øõÕo00 field2984 Lcom/fs/starfarer/ui/d;
 	FIELD øõÕo00 field2880 Lcom/fs/starfarer/ui/dosuper;
-	CLASS o ZzzControlChange
+	CLASS o ControlChangeZzz
 CLASS com/fs/starfarer/title/B/oOoO com/fs/starfarer/settings/AZzzIdk2
 	FIELD do.public$public field4909 Ljava/awt/Color;
 	FIELD for.public$public field4548 Lcom/fs/starfarer/ui/n;
@@ -28771,7 +28879,7 @@ CLASS com/fs/starfarer/ui/B/new mapped/Class5593
 		METHOD super method5646 ()Lcom/fs/starfarer/ui/c;
 		METHOD super method5649 (F)V
 		METHOD super method5648 (Lcom/fs/graphics/util/Fader;)V
-CLASS com/fs/starfarer/ui/B/oOOO com/fs/starfarer/ui/B/zzzUiSomething
+CLASS com/fs/starfarer/ui/B/oOOO com/fs/starfarer/ui/B/UiSomethingZzz
 	FIELD do field11489 F
 	FIELD if field11499 Ljava/awt/Color;
 	FIELD Ó00000 field11487 Lcom/fs/graphics/Sprite;
@@ -28871,7 +28979,7 @@ CLASS com/fs/starfarer/ui/class mapped/Class5117
 		FIELD Õ00000 field18540 Ljava/lang/Object;
 		FIELD super field18539 I
 		FIELD void field18541 Z
-CLASS com/fs/starfarer/ui/classsuper com/fs/starfarer/ui/zzzTooltipRelatedFocusable
+CLASS com/fs/starfarer/ui/classsuper com/fs/starfarer/ui/TooltipRelatedFocusableZzz
 	FIELD do.String field1796 F
 	FIELD if.class field1790 F
 	FIELD int.class field1690 I
@@ -28916,13 +29024,13 @@ CLASS com/fs/starfarer/ui/classsuper com/fs/starfarer/ui/zzzTooltipRelatedFocusa
 	METHOD õÒ0000 method236 ()Lcom/fs/starfarer/ui/OO0O;
 	METHOD õÒ0000 method138 ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	METHOD ØÒ0000 method146 ()I
-	CLASS o ZzzTooltiable
+	CLASS o TooltiableZzz
 	CLASS Oo
 		FIELD new field1079 Lcom/fs/starfarer/ui/classsuper$Oo;
 		FIELD Ó00000 field1078 Lcom/fs/starfarer/ui/classsuper$Oo;
 		FIELD Ò00000 field10803 Lcom/fs/starfarer/ui/classsuper$Oo;
 		FIELD super field10804 [Lcom/fs/starfarer/ui/classsuper$Oo;
-CLASS com/fs/starfarer/ui/d com/fs/starfarer/ui/zzzUiLabel
+CLASS com/fs/starfarer/ui/d com/fs/starfarer/ui/UiLabelZzz
 	FIELD for.float$private field2370 F
 	FIELD int.float$private field2355 Lcom/fs/starfarer/api/ui/Alignment;
 	FIELD int.for$private field2365 Lcom/fs/graphics/util/Fader;
@@ -29459,17 +29567,17 @@ CLASS com/fs/starfarer/ui/impl/H
 		FIELD Ø00000 field11628 Ljava/lang/String;
 CLASS com/fs/starfarer/ui/impl/if mapped/AZZZUiAutotypeableTooltip
 	FIELD for.void field1766 I
-	FIELD int.void zzzMaxLength F
-	FIELD oö0000 zzzLength F
+	FIELD int.void maxLengthZzz F
+	FIELD oö0000 lengthZzz F
 	FIELD Òö0000 rect Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	FIELD ôö0000 field1764 Ljava/util/LinkedList;
 	FIELD Ôö0000 typingSpeed F
 	FIELD öö0000 field1762 Lcom/fs/graphics/super/Object;
 	FIELD Õö0000 field1769 F
 	FIELD public.void field1768 F
-	FIELD return.void zzzText2 Ljava/lang/String;
-	FIELD this.null zzzLengthLimit F
-	FIELD Øö0000 zzzText Ljava/lang/String;
+	FIELD return.void text2Zzz Ljava/lang/String;
+	FIELD this.null lengthLimitZzz F
+	FIELD Øö0000 textZzz Ljava/lang/String;
 	FIELD øö0000 field1763 Lcom/fs/graphics/util/Fader;
 	METHOD oÓ0000 method165 ()V
 	METHOD OÓ0000 method166 ()V
@@ -30445,7 +30553,7 @@ CLASS com/fs/starfarer/ui/impl/Y
 	FIELD ôÒÖ000 field4256 Lcom/fs/starfarer/ui/n;
 	FIELD this.int$Object field4257 Lcom/fs/starfarer/ui/B;
 	FIELD ØÒÖ000 field4255 Lcom/fs/starfarer/ui/n;
-CLASS com/fs/starfarer/ui/int com/fs/starfarer/ui/ZZZTabContainer
+CLASS com/fs/starfarer/ui/int com/fs/starfarer/ui/TabContainerZzz
 	FIELD do.class$String field355 Lcom/fs/starfarer/E/I;
 	FIELD for.class$String field14 F
 	FIELD if.class$String field353 F
@@ -30469,7 +30577,7 @@ CLASS com/fs/starfarer/ui/interfacesuper
 	FIELD public.new$public field6528 I
 	FIELD this.Object$public field6527 I
 	FIELD ØÕÔo00 field6533 Z
-CLASS com/fs/starfarer/ui/j com/fs/starfarer/ui/ZZZIdk
+CLASS com/fs/starfarer/ui/j com/fs/starfarer/ui/IdkZzz
 	FIELD if.if$String field3644 Lcom/fs/starfarer/ui/c;
 	FIELD int.if$String field3757 Ljava/lang/String;
 	FIELD öÕô000 field3756 Lcom/fs/starfarer/ui/OO0o;
@@ -30575,7 +30683,7 @@ CLASS com/fs/starfarer/ui/M
 	METHOD super method5503 (FF)V
 	METHOD super method5501 (FFF)V
 	METHOD super method5502 (FFFF)V
-CLASS com/fs/starfarer/ui/n com/fs/starfarer/ui/zzzFadeSomething
+CLASS com/fs/starfarer/ui/n com/fs/starfarer/ui/FadeSomethingZzz
 	FIELD do.Object$null field694 F
 	FIELD do.String$null field689 Lcom/fs/graphics/util/Fader;
 	FIELD for.Object$null field1814 Z
@@ -30598,8 +30706,8 @@ CLASS com/fs/starfarer/ui/n com/fs/starfarer/ui/zzzFadeSomething
 	FIELD ÓOÓO00 field688 Z
 	FIELD ÒoÓO00 field1815 Z
 	FIELD ÒOÓO00 field1812 F
-	FIELD ôOÓO00 zzzButtonPanel Lcom/fs/starfarer/ui/n$Oo;
-	FIELD ÔoÓO00 zzzSkipPlayingPressedSoundOnce Z
+	FIELD ôOÓO00 buttonPanelZzz Lcom/fs/starfarer/ui/n$Oo;
+	FIELD ÔoÓO00 skipPlayingPressedSoundOnceZzz Z
 	FIELD ÔOÓO00 field1816 F
 	FIELD öOÓO00 field1800 Lcom/fs/graphics/util/Fader;
 	FIELD ÖOÓO00 field697 Ljava/lang/String;
@@ -30613,7 +30721,7 @@ CLASS com/fs/starfarer/ui/n com/fs/starfarer/ui/zzzFadeSomething
 	FIELD super.String$null field687 Z
 	FIELD this.String$null field1813 Z
 	FIELD void.String$null field709 Z
-	FIELD Ø0ÓO00 zzzHighlightBrightness F
+	FIELD Ø0ÓO00 highlightBrightnessZzz F
 	FIELD ØOÓO00 field1819 Z
 	FIELD ø0ÓO00 field1810 F
 	FIELD øOÓO00 customData Ljava/lang/Object;
@@ -31729,7 +31837,7 @@ CLASS com/fs/starfarer/ui/null com/fs/starfarer/ui/AZZZUIInputControl
 	METHOD Ó00000 method123 (Lcom/fs/starfarer/util/super/Object;)Z
 	METHOD Ó00000 method89 (Z)V
 	METHOD Ô00000 method124 (FF)Z
-	METHOD Ô00000 zzzSetFocus (Z)V
+	METHOD Ô00000 setFocusZzz (Z)V
 	METHOD Ö00000 method107 (Z)V
 	METHOD Óo0000 method125 ()V
 	METHOD ÓO0000 method134 ()Lorg/lwjgl/util/vector/Vector2f;
@@ -31745,12 +31853,12 @@ CLASS com/fs/starfarer/ui/null com/fs/starfarer/ui/AZZZUIInputControl
 	METHOD while.super method131 ()Z
 	METHOD Øo0000 method114 ()F
 	METHOD ØO0000 method110 ()Lcom/fs/starfarer/title/B/B$oo;
-	CLASS o ZzzMouse
+	CLASS o MouseZzz
 		FIELD Ò00000 UP Lcom/fs/starfarer/ui/null$o;
 		FIELD Object DOWN Lcom/fs/starfarer/ui/null$o;
-	CLASS O0 ZzzExactContainsIfPositionContains
-	CLASS oo ZzzInputEvent
-	CLASS Oo ZzzDirectionOrSide
+	CLASS O0 ExactContainsIfPositionContainsZzz
+	CLASS oo InputEventZzz
+	CLASS Oo DirectionOrSideZzz
 		FIELD Ò00000 field754 Lcom/fs/starfarer/ui/null$Oo;
 		FIELD Ô00000 field755 Lcom/fs/starfarer/ui/null$Oo;
 		FIELD Object RIGHT Lcom/fs/starfarer/ui/null$Oo;
@@ -32023,7 +32131,7 @@ CLASS com/fs/starfarer/ui/oo0O
 		FIELD public.int$private field6713 Lcom/fs/starfarer/ui/oo0O;
 		METHOD new method173 (Lcom/fs/starfarer/ui/OO0O;F)V
 		METHOD new method632 (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;F)V
-CLASS com/fs/starfarer/ui/oO00 com/fs/starfarer/ui/ZzzUiTooltipable
+CLASS com/fs/starfarer/ui/oO00 com/fs/starfarer/ui/UiTooltipableZzz
 CLASS com/fs/starfarer/ui/oO0O
 	FIELD int.super field11610 Lcom/fs/graphics/Sprite;
 	FIELD Òo0000 field11612 F
@@ -32062,8 +32170,8 @@ CLASS com/fs/starfarer/ui/Oo00
 	METHOD super method5578 (Lcom/fs/graphics/A/C;Ljava/awt/Color;)V
 	METHOD super method5577 (Lcom/fs/graphics/A/C;Ljava/awt/Color;FF)V
 	METHOD void method5580 ()[I
-CLASS com/fs/starfarer/ui/Oo0o com/fs/starfarer/ui/ZzzUiNotifyable
-CLASS com/fs/starfarer/ui/OO0o com/fs/starfarer/ui/zzzRenderableControl
+CLASS com/fs/starfarer/ui/Oo0o com/fs/starfarer/ui/UiNotifyableZzz
+CLASS com/fs/starfarer/ui/OO0o com/fs/starfarer/ui/RenderableControlZzz
 CLASS com/fs/starfarer/ui/OO0O
 	FIELD for field10970 F
 	FIELD int field10968 Lcom/fs/starfarer/ui/OO0O;
@@ -32136,7 +32244,7 @@ CLASS com/fs/starfarer/ui/OOO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	FIELD õÒÖO00 field791 Ljava/awt/Color;
 	FIELD private.do$int field794 Lcom/fs/starfarer/ui/dosuper;
 	FIELD øÒÖO00 field792 Ljava/lang/String;
-CLASS com/fs/starfarer/ui/ooOo com/fs/starfarer/ui/ZzzActionPerformable
+CLASS com/fs/starfarer/ui/ooOo com/fs/starfarer/ui/ActionPerformableZzz
 CLASS com/fs/starfarer/ui/oOOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class5405
 CLASS com/fs/starfarer/ui/OoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class5430
 	FIELD do.do$while field2350 Lcom/fs/starfarer/ui/U;
@@ -32211,11 +32319,11 @@ CLASS com/fs/starfarer/ui/q
 		METHOD super method5503 (FF)V
 		METHOD super method5501 (FFF)V
 		METHOD super method5502 (FFFF)V
-CLASS com/fs/starfarer/ui/Q com/fs/starfarer/ui/ZzzUiToggle
+CLASS com/fs/starfarer/ui/Q com/fs/starfarer/ui/UiToggleZzz
 	METHOD new method3497 (Lcom/fs/starfarer/ui/n;)V
 	METHOD new method3498 (Ljava/lang/String;Lcom/fs/starfarer/ui/ooOo;)Lcom/fs/starfarer/ui/returnnew;
 	METHOD new method3499 (Ljava/lang/String;Ljava/lang/String;Lcom/fs/starfarer/ui/ooOo;)Lcom/fs/starfarer/ui/n;
-	METHOD o00000 zzzCreate (Ljava/lang/String;Ljava/lang/String;Lcom/fs/starfarer/ui/K$o;Lcom/fs/starfarer/ui/ooOo;)Lcom/fs/starfarer/ui/n;
+	METHOD o00000 CreateZzz (Ljava/lang/String;Ljava/lang/String;Lcom/fs/starfarer/ui/K$o;Lcom/fs/starfarer/ui/ooOo;)Lcom/fs/starfarer/ui/n;
 CLASS com/fs/starfarer/ui/r
 	FIELD for.return field13298 Lcom/fs/graphics/A/C;
 	FIELD for.return field7332 Lcom/fs/graphics/super/Object;
@@ -32286,8 +32394,8 @@ CLASS com/fs/starfarer/ui/returnnew
 	FIELD return.int field1772 Lcom/fs/graphics/util/Fader;
 	FIELD ØOO000 field1771 Lcom/fs/graphics/util/Fader;
 	FIELD ø0O000 field1774 Ljava/lang/String;
-CLASS com/fs/starfarer/ui/S com/fs/starfarer/ui/zzzUiControl
-CLASS com/fs/starfarer/ui/Stringnew com/fs/starfarer/ui/ZzzButtonPanel
+CLASS com/fs/starfarer/ui/S com/fs/starfarer/ui/UiControlZzz
+CLASS com/fs/starfarer/ui/Stringnew com/fs/starfarer/ui/ButtonPanelZzz
 	FIELD return.return field7363 Lcom/fs/starfarer/ui/Stringnew$o;
 	FIELD Øô0000 field7364 Ljava/awt/Color;
 	METHOD class method1815 (F)V
@@ -32801,7 +32909,7 @@ CLASS com/fs/starfarer/ui/Y
 	FIELD ÕøÓo00 field6324 F
 	FIELD super.private$while field6320 Ljava/lang/String;
 	FIELD void.private$while field6319 Ljava/lang/String;
-CLASS com/fs/starfarer/ui/z com/fs/starfarer/ui/zzzUiTooltipMaybeCodexRelated
+CLASS com/fs/starfarer/ui/z com/fs/starfarer/ui/UiTooltipMaybeCodexRelatedZzz
 	FIELD öOO000 field23 Ljava/util/List;
 	FIELD øOO000 field24 Z
 	CLASS 1
@@ -32892,21 +33000,21 @@ CLASS com/fs/starfarer/util/J
 	CLASS o
 		FIELD Ò00000 field11723 Lcom/fs/starfarer/util/J$o;
 		FIELD Ô00000 field11722 F
-CLASS com/fs/starfarer/util/K com/fs/starfarer/util/ZaiClipStack
-	FIELD new zaiScreenWidth I
-	FIELD o00000 zaiScreenHeight I
+CLASS com/fs/starfarer/util/K com/fs/starfarer/util/ClipStackZai
+	FIELD new screenWidthZai I
+	FIELD o00000 screenHeightZai I
 	FIELD Ó00000 field11724 Ljava/util/Stack;
 	METHOD Ó00000 method3569 ()V
 	METHOD Ò00000 method3570 ()V
 	METHOD super method3572 ()V
-	METHOD super ZaiSetScreenSize (II)V
+	METHOD super setScreenSizeZai (II)V
 	METHOD super method3571 (IIII)V
-	CLASS o ZaiClipRegion
-		FIELD Ó00000 zaiHeight I
-		FIELD Ò00000 zaiX I
-		FIELD String zaiWidth I
-		FIELD super zaiY I
-		METHOD o00000 zaiIntersect (Lcom/fs/starfarer/util/K$o;)V
+	CLASS o ClipRegionZai
+		FIELD Ó00000 heightZai I
+		FIELD Ò00000 XZai I
+		FIELD String widthZai I
+		FIELD super YZai I
+		METHOD o00000 intersectZai (Lcom/fs/starfarer/util/K$o;)V
 CLASS com/fs/starfarer/util/L
 	FIELD new field18676 F
 	FIELD Ó00000 field18675 F
@@ -33060,7 +33168,7 @@ CLASS com/fs/starfarer/util/super/A mapped/Class260
 	METHOD Õ00000 method3626 ()Z
 	METHOD return method3625 ()Z
 CLASS com/fs/starfarer/util/super/B com/fs/starfarer/util/InputEventList
-	FIELD o00000 zzzFloat F
+	FIELD o00000 FloatZzz F
 	FIELD Ò00000 field1179 J
 	FIELD super field297 F
 	METHOD o00000 clearConsumed ()V
@@ -33078,7 +33186,7 @@ CLASS com/fs/starfarer/util/super/Object com/fs/starfarer/util/InputEvent
 	FIELD Ö00000 field1584 Z
 	FIELD õ00000 field1588 Lorg/apache/log4j/Logger;
 	FIELD oO0000 kind Lcom/fs/starfarer/api/input/InputEventClass;
-	FIELD OO0000 zzzChar C
+	FIELD OO0000 charZzz C
 	FIELD ÓO0000 altDown Z
 	FIELD ÔO0000 ctrlDown Z
 	FIELD while isConsumed Z
@@ -33158,6 +33266,72 @@ CLASS com/fs/starfarer/util/while mapped/Class5371
 	METHOD new method5850 (Ljava/lang/String;F)Lcom/fs/starfarer/util/while;
 	METHOD new method5852 (Ljava/lang/String;Ljava/lang/String;)V
 	METHOD Ó00000 method5851 (Ljava/lang/String;F)Lcom/fs/starfarer/util/while;
+CLASS com/fs/util/container/Pair
+	FIELD one a Ljava/lang/Object;
+	FIELD two b Ljava/lang/Object;
+	METHOD <init> (Ljava/lang/Object;Ljava/lang/Object;)V
+		ARG 1 a
+		ARG 2 b
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+CLASS com/fs/util/container/repo/Classifier
+	METHOD classify classify (Ljava/lang/Object;)Ljava/util/Collection;
+		ARG 1 object
+CLASS com/fs/util/container/repo/FastIterationClassifier
+	FIELD cache cache Ljava/util/Map;
+	METHOD processInterfaces processInterfaces (Ljava/lang/Class;Ljava/util/Set;)V
+		ARG 1 class1
+		ARG 2 set
+CLASS com/fs/util/container/repo/FastLookupClassifier
+	FIELD cache cache Ljava/util/Map;
+	FIELD defaultClassifier defaultClassifier Lcom/fs/util/container/repo/Classifier;
+CLASS com/fs/util/container/repo/ObjectRepository
+	FIELD classifier classifier Lcom/fs/util/container/repo/Classifier;
+	FIELD forFastContains forFastContains Ljava/util/HashSet;
+	FIELD listener listener Lcom/fs/util/container/repo/ObjectRepository$o;
+	FIELD lists lists Ljava/util/Map;
+	FIELD maps maps Ljava/util/Map;
+	FIELD nextId nextId I
+	FIELD saved saved Ljava/util/List;
+	METHOD <init> (Lcom/fs/util/container/repo/Classifier;)V
+		ARG 1 classifier
+	METHOD add add (Ljava/lang/Object;)Z
+		ARG 1 object
+	METHOD addAll addAll (Ljava/util/Collection;)Z
+		ARG 1 collection
+	METHOD clear clear ()V
+	METHOD contains contains (Ljava/lang/Object;)Z
+		ARG 1 object
+	METHOD containsAll containsAll (Ljava/util/Collection;)Z
+		ARG 1 collection
+	METHOD getList getList (Ljava/lang/Class;)Ljava/util/List;
+	METHOD getListener getListener ()Lcom/fs/util/container/repo/ObjectRepository$o;
+	METHOD getMap getMap (Ljava/lang/Class;)Ljava/util/Map;
+	METHOD getNextId getNextId ()I
+	METHOD getSaved getSaved ()Ljava/util/List;
+	METHOD isEmpty isEmpty ()Z
+	METHOD iterator iterator ()Ljava/util/Iterator;
+	METHOD readResolve readResolve ()Ljava/lang/Object;
+	METHOD remove remove (Ljava/lang/Object;)Z
+		ARG 1 object
+	METHOD removeAll removeAll (Ljava/util/Collection;)Z
+		ARG 1 collection
+	METHOD retainAll retainAll (Ljava/util/Collection;)Z
+		ARG 1 collection
+	METHOD setClassifier setClassifier (Lcom/fs/util/container/repo/Classifier;)V
+		ARG 1 classifier
+	METHOD setListener setListener (Lcom/fs/util/container/repo/ObjectRepository$o;)V
+		ARG 1 listener
+	METHOD size size ()I
+	METHOD toArray toArray ()[Ljava/lang/Object;
+	METHOD toArray toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
+		ARG 1 arr
+	METHOD writeReplace writeReplace ()Ljava/lang/Object;
+	CLASS o Listener
+		METHOD objectAdded objectAdded (Ljava/lang/Object;)V
+			ARG 1 object
+		METHOD objectRemoved objectRemoved (Ljava/lang/Object;)V
+			ARG 1 object
 CLASS com/fs/util/container/repo/oOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class5372
 	METHOD super method5854 ()I
 	METHOD super method5855 (I)V
@@ -33169,52 +33343,66 @@ CLASS com/fs/util/D com/fs/util/Point2D
 		ARG 2 y
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
-CLASS com/fs/util/oOOO com/fs/util/ZaiGeometryUtils
-	METHOD new method5860 ([Ljava/lang/String;)V
-	METHOD new method5859 (Lorg/lwjgl/util/vector/Vector2f;FLorg/lwjgl/util/vector/Vector2f;F)[Lorg/lwjgl/util/vector/Vector2f;
-	METHOD new zaiProjectPointOntoLine (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
-		COMMENT AI: Project point onto line (unclamped)
-		ARG 0 zaiPoint
-		ARG 1 zaiLineStart
-		ARG 2 zaiLineEnd
-	METHOD new zaiSegmentsIntersect (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Z
-		ARG 0 zaiSeg1Start
-		ARG 1 zaiSeg1End
-		ARG 2 zaiSeg2Start
-		ARG 3 zaiSeg2End
-	METHOD o00000 zaiTestCircleIntersections ([Ljava/lang/String;)V
+CLASS com/fs/util/DoNotObfuscate
+CLASS com/fs/util/oOOO com/fs/util/GeometryUtilsZai
+	METHOD new testCircleIntersectionsZai__COPY ([Ljava/lang/String;)V
 		COMMENT AI: Test method for circle intersections
 		ARG 0 args
-	METHOD o00000 zaiPointInPolygon (Lorg/lwjgl/util/vector/Vector2f;Ljava/util/List;)Z
+	METHOD new circleCircleIntersectionsZai (Lorg/lwjgl/util/vector/Vector2f;FLorg/lwjgl/util/vector/Vector2f;F)[Lorg/lwjgl/util/vector/Vector2f;
+		COMMENT AI: Find intersection points of two circles
+		ARG 0 circle1CenterZai
+		ARG 1 circle1RadZai
+		ARG 2 circle2CenterZai
+		ARG 3 circle2RadZai
+	METHOD new projectPointOntoLineZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
+		COMMENT AI: Project point onto line (unclamped)
+		ARG 0 pointZai
+		ARG 1 lineStartZai
+		ARG 2 lineEndZai
+	METHOD new segmentsIntersectZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Z
+		ARG 0 seg1StartZai
+		ARG 1 seg1EndZai
+		ARG 2 seg2StartZai
+		ARG 3 seg2EndZai
+	METHOD o00000 testCircleIntersectionsZai ([Ljava/lang/String;)V
+		COMMENT AI: Test method for circle intersections
+		ARG 0 args
+	METHOD o00000 circleContactPointZai (Lorg/lwjgl/util/vector/Vector2f;FLorg/lwjgl/util/vector/Vector2f;F)Lorg/lwjgl/util/vector/Vector2f;
+		COMMENT AI: Find contact point between two circles
+		ARG 0 circle1CenterZai
+		ARG 1 circle1RadZai
+		ARG 2 circle2CenterZai
+		ARG 3 circle2RadZai
+	METHOD o00000 pointInPolygonZai (Lorg/lwjgl/util/vector/Vector2f;Ljava/util/List;)Z
 		COMMENT AI: Test if a point is inside a polygon using ray casting
-		ARG 0 zaiPoint
-		ARG 1 zaiPolygon
-	METHOD o00000 zaiDistancePointToLineSegment (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)F
+		ARG 0 pointZai
+		ARG 1 polygonZai
+	METHOD o00000 distancePointToLineSegmentZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)F
 		COMMENT AI: Distance from point to line segment
-		ARG 0 zaiPoint
-		ARG 1 zaiLineStart
-		ARG 2 zaiLineEnd
-	METHOD o00000 zaiSegmentCircleIntersection (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;F)Lorg/lwjgl/util/vector/Vector2f;
+		ARG 0 pointZai
+		ARG 1 lineStartZai
+		ARG 2 lineEndZai
+	METHOD o00000 segmentCircleIntersectionZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;F)Lorg/lwjgl/util/vector/Vector2f;
 		COMMENT AI: Check intersection of line segment with circle
-		ARG 0 zaiSegStart
-		ARG 1 zaiSegEnd
-		ARG 2 zaiCircleCenter
-		ARG 3 zaiRadius
-	METHOD o00000 zaiSegmentIntersection (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
+		ARG 0 segStartZai
+		ARG 1 segEndZai
+		ARG 2 circleCenterZai
+		ARG 3 radiusZai
+	METHOD o00000 segmentIntersectionZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
 		COMMENT AI: Find intersection point of two line segments
-		ARG 0 zaiSeg1Start
-		ARG 1 zaiSeg1End
-		ARG 2 zaiSeg2Start
-		ARG 3 zaiseg2End
-	METHOD Ó00000 zaiClosestPointOnSegment (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
+		ARG 0 seg1StartZai
+		ARG 1 seg1EndZai
+		ARG 2 seg2StartZai
+		ARG 3 seg2EndZai
+	METHOD Ó00000 closestPointOnSegmentZai (Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;Lorg/lwjgl/util/vector/Vector2f;)Lorg/lwjgl/util/vector/Vector2f;
 		COMMENT AI: Closest point on line segment to point
-		ARG 0 zaiPoint
-		ARG 1 zaiLineStart
-		ARG 2 zaiLineEnd
-CLASS com/fs/util/OoOO com/fs/util/ZaiFrameLimiter
+		ARG 0 pointZai
+		ARG 1 lineStartZai
+		ARG 2 lineEndZai
+CLASS com/fs/util/OoOO com/fs/util/FrameLimiterZai
 	FIELD super nextFrameAt J
-	METHOD super zaiLimitFps (I)V
-		ARG 1 zaiTargetFps
+	METHOD super limitFpsZai (I)V
+		ARG 1 targetFpsZai
 CLASS com/fs/util/ooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class5373
 	FIELD Ò00000 field18763 Ljava/util/List;
 	FIELD Ô00000 field18764 Ljava/lang/String;

@@ -1,5 +1,5 @@
 # Starsector-Java-Mappings
-Java Mappings for Starsector.
+Java Mappings for [Starsector](https://fractalsoftworks.com/).
 
 Contains Mappings for Starsector obfuscated JARs to something that's humanly readable.
 
@@ -10,8 +10,8 @@ Contains Mappings for Starsector obfuscated JARs to something that's humanly rea
 
 The main JAR that contains game-related code is `starfarer_obf.jar`. `starfarer.api.jar` is the unobfuscated version of that jar containing limited subset of code. The project aims to map out the obfuscated jar for modding purposes.
 
-1. The mappings are first generated using Recaf and its "illegal name cleanup" feature to get rid of random unicode and super long `OOOOOOOOOOOOOOOOOOOO`-like names to something less hideous to look at (e.g: `method1364`, `field8381`, etc.).
-2. The mappings then loaded into Enigma (a deubfuscator and remapper used for Minecraft modding) and manually constructed by "looking through the code and seeing what it does".
+1. The mappings are first generated using [Recaf](https://github.com/Col-E/Recaf) and its "illegal name cleanup" feature to get rid of random unicode and super long `OOOOOOOOOOOOOOOOOOOO`-like names to something less hideous to look at (e.g: `method1364`, `field8381`, etc.).
+2. The mappings then loaded into [Enigma](https://github.com/FabricMC/Enigma) (a deubfuscator and remapper used for Minecraft modding) and manually constructed by "looking through the code and seeing what it does".
 3. The mapping can then be applied by *<TODO: figure out this part>.*
 
 ## Project structure
@@ -29,6 +29,8 @@ Mappings produced by Recaf (those with their names fixed) are stored as deobfusc
 ## Applying mappings
 
 ### Enigma
+https://github.com/FabricMC/Enigma
+
 To apply mappings in Enigma, first open the relevant JAR file.
 
 Then use File > Open Mappings... > Enigma File and choose the relevant `.mapping` file.
@@ -36,6 +38,8 @@ Then use File > Open Mappings... > Enigma File and choose the relevant `.mapping
 To save mappings, use File > Save Mappings.
 
 ### Recaf GUI
+https://github.com/Col-E/Recaf
+
 To apply mappings in Recaf, first open the relevant JAR file.
 
 Then use Mappings > Apply > Enigma and pick the `.mapping` file. If you are getting errors, try opening the mappings in Enigma and running File > Drop Invalid Mappings.

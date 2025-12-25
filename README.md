@@ -39,9 +39,9 @@ All mappings are located in `mappings` folder, divided into game versions. Mappi
 ## Mapping & mapping conventions
 
 - Mappings I'm sure about are named normally.
-- Mappings I'm unsure about end with `Zzz` (do not confuse with `zzz` package name used in the JAR namespace).
+- Mappings I'm unsure about end with `Rrr`.
+- Mappings created with use of AI (don't shame me try to map those math methods yourself!) end with `Rai`. Javadoc written by AI start with "AI:".
 - Mappings produced by Recaf's "illegal name resolution" are stored under `mapped` mapping project. They have generic names like  `method1364`, `field8381`, etc. They are eventually moved into the main space.
-- Mappings created with use of AI (don't shame me try to map those math methods yourself!) end with `Zai`. Javadoc written by AI start with "AI:".
 
 **Other cases:**
 - Methods that only call the same method with same args and do nothing else are suffixed with `__COPY`. Not sure if those are the results from obfuscation or if they exist in the original code.

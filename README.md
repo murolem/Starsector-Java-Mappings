@@ -3,6 +3,8 @@ Java Mappings for [Starsector](https://fractalsoftworks.com/).
 
 Contains Mappings for Starsector obfuscated JARs to something that's humanly readable.
 
+This project is based of off Linux version of the game and uses Linux tooling. Beware.
+
 
 > [!IMPORTANT]  
 > Currently, only the Linux version of teh game is being mapped. So to view mapped code you must download the Linux version of the game and go from there (no need to launch it or anything, just get those JARs).
@@ -32,9 +34,23 @@ The JAR files differ between game versions AND platforms. Currently, only the Li
 
 ## Project structure
 
+### Mappings
+
 All mappings are located in `mappings` folder, divided into game versions. Mappings span all JARs for that game version. The mapping file is named `__ALL__.mapping` - it contains mappings for all game JARs at the same time.
 
 "Clean" mappings with no illegal names produced by Recaf are stored in `__ALL__no_illegals.mapping`.
+
+### Scripts
+
+The project contains various scripts in `scripts` folder such as for merging JAR's or decompilation, as well as some scripts in project root such as `recaf.sh` for launching Recaf.
+To make them all executable, run `chmod -R +x .` while in project root.
+
+Besides taking arguments, some scripts rely on having certain symlinks present in the project root. They are as follows:
+
+| Symlink          | Description     | Recommendation                                                |
+|------------------|-----------------|---------------------------------------------------------------|
+| `java`           | Java executable | The game uses Zulu 17, so use that is possible.               |
+| `decompiler.jar` | Decompiler JAR  | Vineflower is the recommended option. See README for details. |
 
 ## Mapping & mapping conventions
 
@@ -69,6 +85,32 @@ To save mappings, use Mappings > Export > Enigma.
 ### Game files
 
 If only I knew... please contact me or make a pull request explaining how to do this!
+
+## Decompiling game JARs
+
+**Important: setup symlinks first! See [#Scripts](#Scripts) for details.**
+
+To decompile game JARs to a concrete project (ie project which can be opened with any IDE/text editor), we need a decompiler. Enigma uses Vineflower as its default decompiler, so we will go with that.
+
+> [!IMPORTANT]  
+> One issue with decompiling is that some of the class names and some other things are externally long, specifically longer than 255 characters, which is a file length limit on both Windows and Linux. On Linux it's especially very hard to tweak and is not maintainable at all if moving drives.
+> So, to circumvent this limitation, we will be truncating names for class files to fit within the limit. The names are truncated to the OS's length limit (so 400 character name becomes 255 on NTFS).
+> This can cause some warnings in your favorite IDE but shouldn't be too much of a hassle for the research purposes of ours.
+
+Before decompiling game JARs, let's merge them first while trimming extra long class filenames. Run the `merge-jars.sh` script with game directory and output JAR arguments. For example:
+```bash
+./scripts/merge-jars.sh ./mappings/0.98a/ ./mergings/0.98.jar
+```
+
+> [!WARNING]  
+> The command below will hog all your CPU and a lot of RAM!
+
+Once the process is complete, run the decompiler via `decompile-jar.sh` script. Run it with the target JAR path and output directory (will be created/emptied with confirmation). For example:
+```bash
+/scripts/decompile-jar.sh ./mergings/0.98.jar ./decompiled/0.98
+```
+
+The resulting directory will contain the decompiled project for you to plow through!
 
 ## Contributing
 

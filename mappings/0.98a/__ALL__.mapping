@@ -1,11 +1,19 @@
+CLASS com/fs/graphics/anim/Animation
+CLASS com/fs/graphics/anim/AnimationChain
+CLASS com/fs/graphics/anim/AnimationManager
 CLASS com/fs/graphics/anim/B
 	FIELD Ò00000 field11400 Ljava/util/Map;
 	METHOD super method1078 (Ljava/lang/String;)Lcom/fs/graphics/anim/SpriteAnimation;
 	METHOD super method1077 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+CLASS com/fs/graphics/anim/BaseAnimation
+CLASS com/fs/graphics/anim/func/Approacher
+CLASS com/fs/graphics/anim/func/NormalizedApproacher
+CLASS com/fs/graphics/anim/func/Oscillator
 CLASS com/fs/graphics/anim/oOOO
 	FIELD new field11402 Lcom/fs/graphics/util/GenericTask;
 	FIELD Ó00000 field11401 Ljava/util/List;
 	METHOD Ò00000 method1079 ()V
+CLASS com/fs/graphics/anim/SpriteAnimation
 CLASS com/fs/graphics/B
 	METHOD super method1 (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
 CLASS com/fs/graphics/DisplayManager
@@ -111,7 +119,7 @@ CLASS com/fs/graphics/F
 		METHOD super method81 (ZZZ)V
 		METHOD void method88 ()V
 		METHOD ø00000 method86 ()Z
-CLASS com/fs/graphics/float mapped/DisplayInitializerRai
+CLASS com/fs/graphics/float com/fs/graphics/display/DisplayInitializerRai
 	FIELD class logger Lorg/apache/log4j/Logger;
 	FIELD float isFullscreenRai Z
 	FIELD new forcedRefreshRateRai I
@@ -124,32 +132,42 @@ CLASS com/fs/graphics/float mapped/DisplayInitializerRai
 	FIELD õ00000 isMouseGrabbedRai Z
 	FIELD OO0000 screenHeightRai I
 	FIELD Ø00000 stencilBitsRai I
-	METHOD Ó00000 method1096 ()Ljava/lang/String;
-	METHOD Ó00000 method1090 (I)V
-	METHOD Ó00000 method1089 (Z)V
+	METHOD Ó00000 getWindowTitleRai ()Ljava/lang/String;
+	METHOD Ó00000 setScreenWidthRai (I)V
+		ARG 1 widthRai
+	METHOD Ó00000 setMouseGrabbedRai (Z)V
+		ARG 1 value
 	METHOD Ò00000 getAntiAliasingSamplesRai ()I
 	METHOD Ò00000 setAntiAliasingSamplesRai (I)V
 		ARG 1 samplesRai
-	METHOD Ò00000 method1087 (Z)V
+	METHOD Ò00000 setFullscreenRai (Z)V
+		ARG 1 value
 	METHOD Ò00000 initializeDisplayRai (ZII)V
 		ARG 1 forceDisplayModeRai
 		ARG 2 widthRai
 		ARG 3 heightRai
-	METHOD ô00000 method1094 ()Z
-	METHOD Ö00000 method1093 ()I
-	METHOD Ö00000 method1085 (I)V
-	METHOD Õ00000 method1084 ()V
-	METHOD Õ00000 method1088 (I)V
-	METHOD super method1095 ()I
+	METHOD ô00000 isMouseGrabbedRai ()Z
+	METHOD Ö00000 getScreenHeightRai ()I
+	METHOD Ö00000 setForcedRefreshRateRai (I)V
+		ARG 1 rateRai
+	METHOD Õ00000 checkStencilSupportRai ()V
+	METHOD Õ00000 setScreenHeightRai (I)V
+		ARG 1 heightRai
+	METHOD String isVSyncEnabledRai ()Z
+	METHOD String setRefreshRateRai (I)V
+		ARG 1 rateRai
+	METHOD super getScreenWidthRai ()I
 	METHOD super setStencilBitsRai (I)V
 		ARG 1 bitsRai
-	METHOD super method1091 (Ljava/lang/String;)V
-	METHOD super method1097 (Z)V
+	METHOD super setWindowTitleRai (Ljava/lang/String;)V
+		ARG 1 titleRai
+	METHOD super setVSyncEnabledRai (Z)V
+		ARG 1 value
 	METHOD super setupDisplayModeRai (ZII)Z
 		ARG 1 forceDisplayModeRai
 		ARG 2 widthRai
 		ARG 3 heightRai
-	METHOD void method1092 ()Z
+	METHOD void isFullscreenRai ()Z
 CLASS com/fs/graphics/I
 	METHOD super method1 (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
 CLASS com/fs/graphics/L
@@ -168,6 +186,8 @@ CLASS com/fs/graphics/L
 	METHOD Ô00000 method99 (Ljava/lang/String;)[B
 	METHOD Ö00000 method94 (Ljava/lang/String;)V
 CLASS com/fs/graphics/LayeredRenderable
+	METHOD getActiveLayers getActiveLayers ()Ljava/util/EnumSet;
+	METHOD render render (Ljava/lang/Enum;Ljava/lang/Object;)V
 CLASS com/fs/graphics/LayeredRenderer
 	CLASS o
 		FIELD Ó00000 field9900 Lcom/fs/graphics/LayeredRenderer$o;
@@ -233,6 +253,12 @@ CLASS com/fs/graphics/OooO
 	METHOD Ô00000 method1050 ()Z
 	METHOD Õ00000 method1053 ()Lcom/fs/graphics/Sprite;
 	METHOD return method1052 ()V
+CLASS com/fs/graphics/particle/BaseParticle
+CLASS com/fs/graphics/particle/BaseParticleEmitter
+CLASS com/fs/graphics/particle/DynamicParticleGroup
+CLASS com/fs/graphics/particle/GenericTextureParticle
+CLASS com/fs/graphics/particle/NebulaParticle
+CLASS com/fs/graphics/particle/NegativeParticle
 CLASS com/fs/graphics/particle/oOOO
 	FIELD for field11420 Lcom/fs/graphics/particle/oOOO$O0;
 	FIELD int field11426 Ljava/lang/String;
@@ -301,6 +327,9 @@ CLASS com/fs/graphics/particle/OoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	METHOD while method1106 (Ljava/awt/image/BufferedImage;)Lcom/fs/graphics/Sprite;
 	METHOD Ø00000 method1108 (I)Ljava/awt/image/BufferedImage;
 	METHOD Ø00000 method1126 (Ljava/awt/image/BufferedImage;)V
+CLASS com/fs/graphics/particle/PointParticle
+CLASS com/fs/graphics/particle/SmokeParticle
+CLASS com/fs/graphics/particle/SmoothParticle
 CLASS com/fs/graphics/particle/TexturedLine
 	CLASS o
 		FIELD Ò00000 field10523 [Lcom/fs/graphics/particle/TexturedLine$o;
@@ -388,14 +417,20 @@ CLASS com/fs/graphics/super/B mapped/Class263
 	METHOD new method1137 ()I
 	METHOD new method1139 (I)V
 	METHOD Ó00000 method1138 ()I
-CLASS com/fs/graphics/super/D mapped/Class264
-	FIELD new field11444 Ljava/util/HashMap;
-	FIELD Ó00000 field11445 [Ljava/lang/String;
-	METHOD Ò00000 method1140 (Ljava/lang/String;)Lcom/fs/graphics/super/return;
-	METHOD super method1143 ()I
-	METHOD super method1142 (Ljava/lang/String;)V
-	METHOD super method1141 (Ljava/lang/String;Ljava/lang/String;)V
-	METHOD super method1144 (Z)Ljava/lang/String;
+CLASS com/fs/graphics/super/D com/fs/graphics/fonts/FontLoaderRai
+	FIELD new fontCacheRai Ljava/util/HashMap;
+	FIELD o00000 cursorPosition I
+	FIELD Ó00000 parsedTokensRai [Ljava/lang/String;
+	METHOD Ò00000 getFontRai (Ljava/lang/String;)Lcom/fs/graphics/super/return;
+		ARG 0 fontNameRai
+	METHOD super parseTokenToIntAndAdvance ()I
+	METHOD super parseLine (Ljava/lang/String;)V
+		ARG 0 line
+	METHOD super loadFontRai (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 fontNameRai
+		ARG 1 resourcePath
+	METHOD super parseTokenToStringAndAdvance (Z)Ljava/lang/String;
+		ARG 0 removeQuotes
 CLASS com/fs/graphics/super/E mapped/Class265
 	FIELD Ó00000 field11446 I
 	FIELD Ò00000 field11448 I
@@ -549,7 +584,7 @@ CLASS com/fs/graphics/super/oOOO mapped/Class267
 	METHOD void method1217 ()I
 	METHOD void method1213 (I)V
 	METHOD ø00000 method1214 ()I
-CLASS com/fs/graphics/super/return mapped/Class268
+CLASS com/fs/graphics/super/return com/fs/graphics/fonts/Font
 	FIELD do field11526 I
 	FIELD if field11523 I
 	FIELD Ó00000 field11534 Ljava/lang/String;
@@ -558,22 +593,25 @@ CLASS com/fs/graphics/super/return mapped/Class268
 	FIELD Ö00000 field11514 Ljava/lang/String;
 	FIELD õ00000 field11513 I
 	FIELD Õ00000 field11516 I
+	FIELD OO0000 field321431242 Ljava/lang/String;
 	FIELD Óo0000 field11533 Lcom/fs/util/container/Pair;
 	FIELD ÓO0000 field11519 [I
 	FIELD Òo0000 field11518 I
 	FIELD ÒO0000 field11530 Lcom/fs/graphics/Object;
-	FIELD ôO0000 field11532 Ljava/lang/String;
+	FIELD ôO0000 resourcePath Ljava/lang/String;
 	FIELD ÖO0000 field11517 I
 	FIELD õO0000 field11531 Ljava/lang/String;
-	FIELD ÕO0000 field11511 I
+	FIELD ÕO0000 filed1231313 I
 	FIELD private field11529 [Lcom/fs/graphics/super/oOOO;
 	FIELD String.super field11527 I
 	FIELD super field11528 I
-	FIELD super.super field11512 I
+	FIELD super.super field12313 I
 	FIELD void field11520 [I
 	FIELD void.super field11524 I
 	FIELD ø00000 field11521 I
 	FIELD øO0000 field11515 I
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 resourcePath
 	METHOD class method1255 ()I
 	METHOD class method1261 (I)V
 	METHOD class method1231 (Ljava/lang/String;)V
@@ -611,6 +649,7 @@ CLASS com/fs/graphics/super/return mapped/Class268
 	METHOD Ø00000 method1238 ()Ljava/lang/String;
 	METHOD Ø00000 method1258 (I)V
 	METHOD ØO0000 method1252 ()I
+CLASS com/fs/graphics/test/BasicGraphicsTest
 CLASS com/fs/graphics/TextureLoader
 	FIELD class field11399 Lorg/apache/log4j/Logger;
 	FIELD float field11394 Ljava/util/Map;
@@ -689,6 +728,9 @@ CLASS com/fs/graphics/util/B com/fs/graphics/util/GraphicsUtilsRai
 	METHOD Ö00000 setup2DRenderingRai ()V
 	METHOD Ö00000 method1280 (Ljava/awt/Color;F)Ljava/awt/Color;
 	METHOD Ø00000 setTextureClampToEdgeRai ()V
+CLASS com/fs/graphics/util/Fader
+CLASS com/fs/graphics/util/GenericTask
+CLASS com/fs/graphics/util/GLListManager
 CLASS com/fs/graphics/util/ooOO
 	FIELD class field11540 Lcom/fs/graphics/util/ooOO$o;
 	FIELD new field11537 F
@@ -1199,14 +1241,22 @@ CLASS com/fs/starfarer/campaign/B/String
 	FIELD Ó00000 field12706 Lcom/fs/starfarer/campaign/B/C;
 	FIELD Ô00000 field12708 Lcom/fs/starfarer/api/campaign/BattleAPI;
 CLASS com/fs/starfarer/campaign/B/super mapped/Class312
+CLASS com/fs/starfarer/campaign/BaseCampaignEntity
+CLASS com/fs/starfarer/campaign/BaseLocation
+	METHOD isHyperspace isHyperspace ()Z
 CLASS com/fs/starfarer/campaign/C
 	FIELD Ò00000 field7144 I
 	FIELD super field7145 Z
 CLASS com/fs/starfarer/campaign/CampaignEngine
+	METHOD getInstance getInstance ()Lcom/fs/starfarer/campaign/CampaignEngine;
+	METHOD getPlayerFleet getPlayerFleet ()Lcom/fs/starfarer/api/campaign/CampaignFleetAPI;
+	METHOD getUIData getUIData ()Lcom/fs/starfarer/api/campaign/PersistentUIDataAPI;
 	CLASS 3
 		CLASS com/fs/starfarer/campaign/CampaignEngine
 			CLASS 1
 				METHOD super method794 (Ljava/lang/String;Ljava/lang/String;)I
+CLASS com/fs/starfarer/campaign/CampaignEntity
+	METHOD getLocation getLocation ()Lorg/lwjgl/util/vector/Vector2f;
 CLASS com/fs/starfarer/campaign/CampaignHelpManager
 	CLASS 1
 		FIELD ÕöØo00 field6579 Lcom/fs/starfarer/campaign/CampaignHelpManager;
@@ -1239,6 +1289,8 @@ CLASS com/fs/starfarer/campaign/CampaignHelpManager
 		FIELD OöØo00 field7185 Lcom/fs/starfarer/campaign/CampaignHelpManager;
 		FIELD super.while$private field7186 Lcom/fs/starfarer/ui/oo0O$o;
 		FIELD this.while$private field6599 Lcom/fs/starfarer/campaign/CampaignHelpManager;
+CLASS com/fs/starfarer/campaign/CampaignPlanet
+	METHOD getSpec getSpec ()Lcom/fs/starfarer/api/campaign/PlanetSpecAPI;
 CLASS com/fs/starfarer/campaign/CampaignState
 	CLASS 2
 		FIELD ÖöØo00 field7165 Lcom/fs/starfarer/campaign/CampaignState;
@@ -1261,6 +1313,9 @@ CLASS com/fs/starfarer/campaign/CampaignState
 		FIELD ÓO0000 field730 Lcom/fs/starfarer/campaign/CampaignState$o;
 		FIELD while field734 Lcom/fs/starfarer/campaign/CampaignState$o;
 		FIELD Ø00000 field732 Lcom/fs/starfarer/campaign/CampaignState$o;
+CLASS com/fs/starfarer/campaign/CampaignUIPersistentData
+	METHOD getCampaignMapZoom getCampaignMapZoom ()F
+	METHOD getHyperMapZoom getHyperMapZoom ()F
 CLASS com/fs/starfarer/campaign/CharacterStats
 	CLASS 1
 		METHOD super method23 (Lcom/fs/starfarer/campaign/CharacterStats$AptitudeLevel;Lcom/fs/starfarer/campaign/CharacterStats$AptitudeLevel;)I
@@ -2564,6 +2619,7 @@ CLASS com/fs/starfarer/campaign/comms/while mapped/Class5580
 	FIELD void.String$void field7881 Lcom/fs/starfarer/campaign/comms/CommMessage;
 	METHOD new method841 (Lcom/fs/starfarer/ui/newui/Object;Lcom/fs/starfarer/api/campaign/comm/MessageSectionAPI;)V
 	METHOD while.int method840 ()V
+CLASS com/fs/starfarer/campaign/CustomCampaignEntity
 CLASS com/fs/starfarer/campaign/D
 	FIELD new field7158 Ljava/lang/Boolean;
 	FIELD Ó00000 field7157 Ljava/lang/Boolean;
@@ -2634,6 +2690,11 @@ CLASS com/fs/starfarer/campaign/F
 	CLASS 1
 		FIELD ÒÒõO00 field2667 Lcom/fs/starfarer/api/campaign/SectorEntityToken;
 CLASS com/fs/starfarer/campaign/Faction
+	FIELD id id Ljava/lang/String;
+	METHOD getBaseUIColor getBaseUIColor ()Ljava/awt/Color;
+	METHOD getBrightUIColor getBrightUIColor ()Ljava/awt/Color;
+	METHOD getDarkUIColor getDarkUIColor ()Ljava/awt/Color;
+	METHOD getGridUIColor getGridUIColor ()Ljava/awt/Color;
 	CLASS 2
 		FIELD new field9428 Lcom/fs/starfarer/api/characters/RelationshipAPI$RelationshipTarget;
 		FIELD Ò00000 field7163 Lcom/fs/starfarer/api/characters/RelationshipAPI$RelationshipTarget;
@@ -2646,6 +2707,7 @@ CLASS com/fs/starfarer/campaign/fleet/CampaignShipEngineGlow
 		METHOD super method795 (Lcom/fs/starfarer/campaign/fleet/CampaignShipEngineGlow$SlotData;Lcom/fs/starfarer/campaign/fleet/CampaignShipEngineGlow$SlotData;)I
 	CLASS 3
 		METHOD super method795 (Lcom/fs/starfarer/campaign/fleet/CampaignShipEngineGlow$SlotData;Lcom/fs/starfarer/campaign/fleet/CampaignShipEngineGlow$SlotData;)I
+CLASS com/fs/starfarer/campaign/fleet/CargoData
 CLASS com/fs/starfarer/campaign/fleet/FleetData
 	CLASS 1
 		METHOD super method17 (Lcom/fs/starfarer/campaign/fleet/FleetMember;Lcom/fs/starfarer/campaign/fleet/FleetMember;)I
@@ -4191,25 +4253,30 @@ CLASS com/fs/starfarer/campaign/ui/MarketConditionsWidget
 	FIELD OöøO00 field5912 Lcom/fs/starfarer/api/campaign/econ/MarketAPI;
 	FIELD ÓöøO00 field5924 Ljava/util/List;
 	FIELD ÒöøO00 field5604 Ljava/util/List;
-	FIELD ôöøO00 field5600 Ljava/awt/Color;
+	FIELD ôöøO00 brightUiColorRrr Ljava/awt/Color;
 	FIELD ÔöøO00 field5601 Z
 	FIELD ôõøO00 isColonyRrr Z
 	FIELD ÖöøO00 field5918 Ljava/awt/Color;
 	FIELD öõøO00 field5602 F
 	FIELD õöøO00 field5922 F
-	FIELD ÕöøO00 baseColor Ljava/awt/Color;
+	FIELD ÕöøO00 baseUiColorRrr Ljava/awt/Color;
 	FIELD õõøO00 field5925 Lcom/fs/starfarer/ui/dosuper;
 	FIELD private.void$for field5921 F
 	FIELD public.void$for field5605 Lcom/fs/starfarer/ui/d;
-	FIELD return.null$for field5598 Ljava/awt/Color;
+	FIELD return.null$for darkUiColorRrr Ljava/awt/Color;
 	FIELD super.null$for field5914 Ljava/awt/Color;
 	FIELD this.null$for marketApi Lcom/fs/starfarer/api/campaign/econ/MarketAPI;
 	FIELD void.null$for field5913 F
 	FIELD ØöøO00 field5593 F
-	FIELD ØõøO00 field5599 Ljava/awt/Color;
+	FIELD ØõøO00 gridUiColorRrr Ljava/awt/Color;
 	FIELD øõøO00 field5595 Lcom/fs/starfarer/campaign/ui/MarketConditionsWidget$o;
+	METHOD create create ()V
+	METHOD getBaseColor getBaseColor ()Ljava/awt/Color;
+	METHOD getImagePad getImagePad ()F
 	METHOD oÕO000 method484 ()Z
 	METHOD OÕO000 method483 ()V
+	METHOD setImagePad setImagePad (F)V
+		ARG 1 pad
 	CLASS 1
 		METHOD super method9 (Lcom/fs/starfarer/api/campaign/econ/MarketConditionAPI;Lcom/fs/starfarer/api/campaign/econ/MarketConditionAPI;)I
 	CLASS 2
@@ -6379,7 +6446,9 @@ CLASS com/fs/starfarer/campaign/ui/ooOO
 	FIELD öÕÕO00 field2187 Lcom/fs/starfarer/ui/d;
 	FIELD return.void$int field2188 Ljava/awt/Color;
 	FIELD øÕÕO00 field2184 Ljava/lang/String;
-CLASS com/fs/starfarer/campaign/ui/oOoO
+CLASS com/fs/starfarer/campaign/ui/oOoO com/fs/starfarer/campaign/ui/CargoTabButton
+	FIELD BUTTON_HEIGHT BUTTON_HEIGHT F
+	FIELD BUTTON_WIDTH BUTTON_WIDTH F
 	FIELD for.class$for field5020 [I
 	FIELD int.class$for field5003 Lcom/fs/starfarer/ui/n;
 	FIELD int.return$for field5006 Lcom/fs/starfarer/ui/n;
@@ -6394,6 +6463,7 @@ CLASS com/fs/starfarer/campaign/ui/oOoO
 	FIELD ôØøO00 field5011 I
 	FIELD ÔØøO00 field5015 Ljava/lang/String;
 	FIELD ÕØøO00 field5010 F
+	FIELD PAD PAD F
 	FIELD public.class$for field5007 Lcom/fs/starfarer/campaign/fleet/CargoData;
 	FIELD return.return$for field5009 Lcom/fs/starfarer/ui/g;
 	FIELD this.return$for field5018 Lcom/fs/starfarer/campaign/ui/oOoO;
@@ -16397,6 +16467,7 @@ CLASS com/fs/starfarer/coreui/A/H
 	FIELD øÓõ000 field2736 Lcom/fs/starfarer/coreui/A/oOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	FIELD øÒõ000 field2498 Lcom/fs/starfarer/coreui/c;
 	FIELD øÒõ000 field2733 Lcom/fs/starfarer/coreui/OO0oOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD getFilter getFilter ()Lcom/fs/starfarer/coreui/A/OOOo;
 	CLASS o
 		FIELD do field10171 Z
 		FIELD do.super field10178 Ljava/util/List;
@@ -16725,7 +16796,7 @@ CLASS com/fs/starfarer/coreui/A/oOOo
 CLASS com/fs/starfarer/coreui/A/oOOO
 	FIELD int.public$private field2394 Lcom/fs/starfarer/coreui/A/oOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	FIELD o0ôo00 field2393 Ljava/lang/String;
-	FIELD Ò0ôo00 field2395 Lcom/fs/starfarer/ui/impl/StandardTooltipV2;
+	FIELD Ò0ôo00 tooltip Lcom/fs/starfarer/ui/impl/StandardTooltipV2;
 	FIELD Ô0ôo00 field2398 Lcom/fs/starfarer/coreui/A/OOooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	FIELD Õ0ôo00 field2397 Lcom/fs/starfarer/coreui/A/C;
 	FIELD öøØo00 field2400 Z
@@ -16789,17 +16860,19 @@ CLASS com/fs/starfarer/coreui/A/OOOo
 	FIELD this.interface$class field2969 Z
 	FIELD ØÓø000 field2968 Lcom/fs/starfarer/api/ui/MapFilterData;
 	METHOD class.null method230 ()V
+	METHOD getData getData ()Lcom/fs/starfarer/api/ui/MapFilterData;
 	METHOD Ôø0000 method229 ()V
-CLASS com/fs/starfarer/coreui/A/oOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class85
+CLASS com/fs/starfarer/coreui/A/oOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/MaybeIntelIconRrr
 	FIELD for.while$class field4910 F
-	FIELD int.public$class field4906 Ljava/util/List;
+	FIELD int.public$class campaignEntities Ljava/util/List;
 	FIELD int.while$class field4913 Lcom/fs/starfarer/campaign/BaseLocation;
+	FIELD INTEL_ICON_DATA_KEY INTEL_ICON_DATA_KEY Ljava/lang/String;
 	FIELD ö0ø000 field4908 Ljava/util/List;
 	FIELD ooø000 field4907 Ljava/util/List;
-	FIELD oOø000 field4903 Z
+	FIELD oOø000 inRadarMode Z
 	FIELD Òoø000 field4902 Ljava/util/LinkedHashMap;
 	FIELD ÒOø000 field4912 I
-	FIELD ôOø000 field4899 Lcom/fs/graphics/Object;
+	FIELD ôOø000 someTextureRrr Lcom/fs/graphics/Object;
 	FIELD ÔOø000 field4916 Lcom/fs/graphics/Sprite;
 	FIELD öOø000 field4900 F
 	FIELD ÕOø000 field4911 Z
@@ -16809,11 +16882,20 @@ CLASS com/fs/starfarer/coreui/A/oOoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	FIELD ØOø000 field4915 Ljava/util/List;
 	FIELD ø0ø000 field4905 Ljava/util/List;
 	FIELD øOø000 field4909 Lcom/fs/starfarer/coreui/A/oOOO;
+	METHOD <init> (Z)V
+		ARG 1 inRadarMode
+	METHOD getConstellationLabelEntity getConstellationLabelEntity (Lcom/fs/starfarer/api/impl/campaign/procgen/Constellation;)Lcom/fs/starfarer/campaign/CustomCampaignEntity;
+		ARG 1 constellation
+	METHOD getFilterData getFilterData ()Lcom/fs/starfarer/api/ui/MapFilterData;
+	METHOD getLocation getLocation ()Lcom/fs/starfarer/campaign/BaseLocation;
+	METHOD getTextAlignmentFor getTextAlignmentFor (Lcom/fs/starfarer/coreui/A/C;)Lcom/fs/starfarer/api/ui/Alignment;
+	METHOD isRadarMode isRadarMode ()Z
 	METHOD new method396 (FFF)Lcom/fs/starfarer/api/campaign/SectorEntityToken;
 	METHOD new method400 (FFFFFFLjava/awt/Color;FFF)V
 	METHOD null method401 (F)V
 	METHOD ö00000 method398 (F)V
 	METHOD õ00000 method399 (F)V
+	METHOD updateSystemNebulas updateSystemNebulas ()V
 	METHOD Ø00000 method397 (F)V
 CLASS com/fs/starfarer/coreui/A/OOooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class109
 	FIELD for.this$return field5799 Lcom/fs/starfarer/coreui/A/OOooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO$Oo;
@@ -17995,17 +18077,6 @@ CLASS com/fs/starfarer/coreui/O000
 		FIELD Ò00000 field909 Lcom/fs/starfarer/coreui/O000$o;
 		FIELD Ô00000 field910 Lcom/fs/starfarer/coreui/O000$o;
 CLASS com/fs/starfarer/coreui/O0oo
-		FIELD int.null$return field5551 Lcom/fs/starfarer/ui/d;
-		FIELD oÔ0O00 field5554 Lcom/fs/graphics/Sprite;
-		FIELD ÒÔ0O00 field5553 Z
-		FIELD ôÔ0O00 field5549 Lcom/fs/starfarer/ui/d;
-		FIELD ÔÔ0O00 field5547 Lcom/fs/starfarer/ui/d;
-		FIELD öÓ0O00 field5552 Lcom/fs/starfarer/coreui/O0oo$oo;
-		FIELD ÕÔ0O00 field5545 Lcom/fs/starfarer/ui/ooO0;
-		FIELD return.null$return field5555 Lcom/fs/starfarer/renderers/D;
-		FIELD this.null$return field5550 Lcom/fs/starfarer/ui/d;
-		FIELD ØÔ0O00 field5548 Lcom/fs/starfarer/ui/d;
-		FIELD øÓ0O00 field5546 Lcom/fs/starfarer/ui/ooO0;
 	CLASS oo
 		METHOD for method2457 ()F
 		METHOD int method2453 ()Z
@@ -18026,11 +18097,6 @@ CLASS com/fs/starfarer/coreui/O000
 		FIELD return field10198 F
 		FIELD Ø00000 field10199 F
 		METHOD Ò00000 method2452 (FF)V
-CLASS com/fs/starfarer/coreui/O0oo
-		FIELD for.null$return field5331 Lcom/fs/starfarer/campaign/fleet/FleetMember;
-		FIELD oÕ0O00 field5328 Lcom/fs/graphics/Sprite;
-		FIELD öÔ0O00 field5330 Ljava/awt/Color;
-		FIELD øÔ0O00 field5329 Lcom/fs/starfarer/renderers/D;
 CLASS com/fs/starfarer/coreui/O0OoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO mapped/Class5499
 	FIELD do.null$super field4747 Lcom/fs/starfarer/ui/n;
 	FIELD if.null$super field4755 Lcom/fs/graphics/util/Fader;
@@ -24039,6 +24105,8 @@ CLASS com/fs/starfarer/loading/specs/OoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	METHOD ø00000 method2748 ()Ljava/lang/String;
 	METHOD øo0000 method2762 ()Ljava/lang/String;
 	METHOD øO0000 method2763 ()Ljava/lang/String;
+CLASS com/fs/starfarer/loading/specs/PlanetSpec
+	METHOD getIconColor getIconColor ()Ljava/awt/Color;
 CLASS com/fs/starfarer/loading/specs/Q
 	FIELD class field11335 Lcom/fs/starfarer/combat/o0OO/O0OO;
 	FIELD new field11334 F
@@ -26336,7 +26404,7 @@ CLASS com/fs/starfarer/settings/StarfarerSettings
 	FIELD ÕÓ0000 field11241 F
 	FIELD ÕÒ0000 field11252 F
 	FIELD Õô0000 field11235 F
-	FIELD ÕÔ0000 field11218 F
+	FIELD ÕÔ0000 timeScaleRrr F
 	FIELD ÕÖ0000 field11237 F
 	FIELD ÕÕ0000 field11169 Ljava/lang/String;
 	FIELD oØ0000 field11190 Lorg/json/JSONObject;
@@ -28980,55 +29048,69 @@ CLASS com/fs/starfarer/ui/class mapped/Class5117
 		FIELD Õ00000 field18540 Ljava/lang/Object;
 		FIELD super field18539 I
 		FIELD void field18541 Z
-CLASS com/fs/starfarer/ui/classsuper com/fs/starfarer/ui/TooltipRelatedFocusableRrr
+CLASS com/fs/starfarer/ui/classsuper com/fs/starfarer/ui/TooltipLogicRrr
 	FIELD do.String field1796 F
 	FIELD if.class field1790 F
-	FIELD int.class field1690 I
-	FIELD Object.class field1693 F
-	FIELD oÖ0000 field1695 F
+	FIELD int.class mouseXRrr I
+	FIELD Object.class offsetRight F
+	FIELD oÖ0000 offsetBottom F
 	FIELD ÓÖ0000 field1789 Lcom/fs/starfarer/ui/classsuper$Oo;
-	FIELD ÒÖ0000 field1687 Ljava/lang/Object;
+	FIELD ÒÖ0000 tooltipDataRrr Ljava/lang/Object;
 	FIELD ôÖ0000 field1685 F
-	FIELD ÔÖ0000 field1686 Lcom/fs/starfarer/ui/classsuper$o;
-	FIELD öÖ0000 field1684 Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	FIELD ÔÖ0000 tooltipRrr Lcom/fs/starfarer/ui/classsuper$o;
+	FIELD öÖ0000 rect Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
 	FIELD ÖÖ0000 field1795 F
 	FIELD õÖ0000 field1794 F
 	FIELD ÕÖ0000 field1797 Lcom/fs/starfarer/ui/OO0O;
-	FIELD ÕÖ0000 field1696 Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
-	FIELD oØ0000 field1691 I
+	FIELD ÕÖ0000 excludeRectRrr Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	FIELD oØ0000 mouseYRrr I
 	FIELD OØ0000 field1798 Z
 	FIELD ÓØ0000 field1791 I
 	FIELD ÒØ0000 field1698 Z
 	FIELD ÔØ0000 field1689 F
 	FIELD private.String field1787 Lcom/fs/starfarer/ui/classsuper$o;
-	FIELD public.String field1688 Lcom/fs/starfarer/ui/classsuper$Oo;
-	FIELD return.class field1697 Z
+	FIELD public.String visibility Lcom/fs/starfarer/ui/classsuper$Oo;
+	FIELD return.class maybeIsMouseWithinRrr Z
 	FIELD String.class field1785 Lcom/fs/starfarer/ui/OO0O;
 	FIELD super.class field1800 F
-	FIELD this.class field1694 F
+	FIELD this.class offsetTop F
 	FIELD void.class field1792 I
-	FIELD ØÖ0000 field1699 F
-	FIELD øÖ0000 field1692 F
-	METHOD class.new method136 ()Ljava/lang/Object;
-	METHOD new method141 (FFFF)V
+	FIELD ØÖ0000 daysRrr F
+	FIELD øÖ0000 offsetLeft F
+	METHOD <init> (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;FLcom/fs/starfarer/ui/classsuper$o;Ljava/lang/Object;)V
+		ARG 1 rect
+		ARG 3 tooltipRrr
+		ARG 4 tooltipDataRrr
+	METHOD class.new getTooltipDataRrr ()Ljava/lang/Object;
+	METHOD new setOffsets (FFFF)V
+		ARG 1 offsetLeft
+		ARG 2 offsetRight
+		ARG 3 offsetTop
+		ARG 4 offsetBottom
 	METHOD new method237 (Lcom/fs/starfarer/ui/OO0O;)V
 	METHOD new method139 (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
-	METHOD new.new method147 ()V
-	METHOD null.new method140 ()F
-	METHOD Ó00000 method72 (F)V
-	METHOD oÒ0000 method145 ()I
+		ARG 1 rect
+	METHOD new.new hide ()V
+	METHOD null.new getSomethingRrr ()F
+	METHOD Ó00000 setSomethingRrr (F)V
+	METHOD oÒ0000 getMouseXRrr ()I
 	METHOD OÒ0000 method235 ()Lcom/fs/starfarer/ui/OO0O;
-	METHOD OÒ0000 method137 ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
-	METHOD ÓÒ0000 method143 ()V
-	METHOD ÔÒ0000 method142 ()V
-	METHOD ÖÒ0000 method144 ()Z
+	METHOD OÒ0000 getRect1Rrr ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD ÓÒ0000 showTooltip ()V
+	METHOD ÔÒ0000 hideTooltip ()V
+	METHOD ÖÒ0000 isVisible ()Z
 	METHOD õÒ0000 method236 ()Lcom/fs/starfarer/ui/OO0O;
-	METHOD õÒ0000 method138 ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
-	METHOD ØÒ0000 method146 ()I
-	CLASS o TooltiableRrr
-	CLASS Oo
-		FIELD new field1079 Lcom/fs/starfarer/ui/classsuper$Oo;
-		FIELD Ó00000 field1078 Lcom/fs/starfarer/ui/classsuper$Oo;
+	METHOD õÒ0000 getRect2Rrr ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD ØÒ0000 getMouseYRrr ()I
+	CLASS o TooltipControlRrr
+		METHOD hideTooltip hideTooltip (Ljava/lang/Object;)V
+		METHOD preProcessInput preProcessInput (Lcom/fs/starfarer/util/super/B;)V
+			ARG 1 events
+		METHOD showTooltip showTooltip (Ljava/lang/Object;)V
+			ARG 1 dataRrr
+	CLASS Oo TooltipVisibility
+		FIELD new HIDDEN Lcom/fs/starfarer/ui/classsuper$Oo;
+		FIELD Ó00000 VISIBLE Lcom/fs/starfarer/ui/classsuper$Oo;
 		FIELD Ò00000 field10803 Lcom/fs/starfarer/ui/classsuper$Oo;
 		FIELD super field10804 [Lcom/fs/starfarer/ui/classsuper$Oo;
 CLASS com/fs/starfarer/ui/d com/fs/starfarer/ui/UiLabelRrr
@@ -29039,8 +29121,8 @@ CLASS com/fs/starfarer/ui/d com/fs/starfarer/ui/UiLabelRrr
 	FIELD ÒÖØo00 field2379 Lcom/fs/starfarer/ui/OO0o;
 	FIELD ÒÕØo00 field2375 Z
 	FIELD ôÖØo00 field2368 F
-	FIELD ÔÖØo00 field2383 Lcom/fs/graphics/util/ooOO$Oo;
-	FIELD ôÕØo00 field2380 Z
+	FIELD ÔÖØo00 blinkerRrr Lcom/fs/graphics/util/ooOO$Oo;
+	FIELD ôÕØo00 forceTooltipToLowerRightOfMouse Z
 	FIELD ÔÕØo00 field2356 Lcom/fs/graphics/util/Fader;
 	FIELD öÖØo00 field2372 F
 	FIELD öÕØo00 field2362 Ljava/awt/Color;
@@ -29064,8 +29146,16 @@ CLASS com/fs/starfarer/ui/d com/fs/starfarer/ui/UiLabelRrr
 	FIELD øÖØo00 field2371 Ljava/awt/Color;
 	FIELD øÕØo00 field2360 Lcom/fs/graphics/util/ooOO;
 	FIELD øØØo00 field2354 Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD autoSize autoSize ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD blinkOff blinkOff ()V
+	METHOD blinkOn blinkOn ()V
+	METHOD findTopAncestor findTopAncestor ()Lcom/fs/starfarer/ui/z;
+	METHOD getParent getParent ()Lcom/fs/starfarer/ui/z;
+	METHOD getRenderer getRenderer ()Lcom/fs/graphics/super/Object;
 	METHOD interface.private method181 ()Z
 	METHOD ÔøO000 method180 ()V
+	METHOD setForceTooltipToLowerRightOfMouse setForceTooltipToLowerRightOfMouse (Z)V
+		ARG 1 value
 	CLASS 1
 		FIELD ôoÔo00 field5120 F
 		FIELD return.this$public field5119 Lcom/fs/starfarer/ui/d;
@@ -29232,6 +29322,7 @@ CLASS com/fs/starfarer/ui/g
 		FIELD int.this$public field3182 F
 		FIELD öoÔo00 field3183 F
 		FIELD øoÔo00 field3181 Lcom/fs/starfarer/ui/OO0o;
+		METHOD isScrolling isScrolling ()Z
 CLASS com/fs/starfarer/ui/G
 	FIELD if.do$int field801 Ljava/awt/Color;
 	FIELD int.do$int field1878 Ljava/awt/Color;
@@ -30160,6 +30251,7 @@ CLASS com/fs/starfarer/ui/impl/S
 	FIELD Ø0O000 field2452 Z
 CLASS com/fs/starfarer/ui/impl/StandardTooltipV2
 	FIELD do.int$if field526 Lcom/fs/starfarer/ui/oo0O;
+	FIELD expanded expanded Z
 	FIELD for.int$if field73 Ljava/lang/Runnable;
 	FIELD if.int$if field529 [I
 	FIELD int.int$if field82 Z
@@ -30175,7 +30267,7 @@ CLASS com/fs/starfarer/ui/impl/StandardTooltipV2
 	FIELD oøØO00 field77 F
 	FIELD OøØO00 field514 Lcom/fs/starfarer/ui/c;
 	FIELD ÓøØO00 field523 Z
-	FIELD ÒøØO00 field84 Lcom/fs/starfarer/ui/classsuper;
+	FIELD ÒøØO00 logic Lcom/fs/starfarer/ui/classsuper;
 	FIELD ÔøØO00 field80 Z
 	FIELD ÖøØO00 field528 Z
 	FIELD ÕøØO00 field519 Lcom/fs/starfarer/ui/c;
@@ -30187,6 +30279,8 @@ CLASS com/fs/starfarer/ui/impl/StandardTooltipV2
 	FIELD this.if$if field71 Lcom/fs/starfarer/ui/OO0o;
 	FIELD ØöØO00 field83 Lcom/fs/starfarer/ui/oo0O;
 	FIELD øöØO00 field78 F
+	METHOD getLogic getLogic ()Lcom/fs/starfarer/ui/classsuper;
+	METHOD setLogic setLogic (Lcom/fs/starfarer/ui/classsuper;)V
 	METHOD ØÓO000 method6 ()V
 	CLASS 1
 		FIELD ôÕôO00 field87 Lcom/fs/starfarer/campaign/fleet/FleetMember;
@@ -32133,6 +32227,7 @@ CLASS com/fs/starfarer/ui/oo0O
 		METHOD new method173 (Lcom/fs/starfarer/ui/OO0O;F)V
 		METHOD new method632 (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;F)V
 CLASS com/fs/starfarer/ui/oO00 com/fs/starfarer/ui/UiTooltipableRrr
+	METHOD setTooltip setTooltip (FLcom/fs/starfarer/ui/Oo0o;)V
 CLASS com/fs/starfarer/ui/oO0O
 	FIELD int.super field11610 Lcom/fs/graphics/Sprite;
 	FIELD Òo0000 field11612 F
@@ -32172,7 +32267,24 @@ CLASS com/fs/starfarer/ui/Oo00
 	METHOD super method5577 (Lcom/fs/graphics/A/C;Ljava/awt/Color;FF)V
 	METHOD void method5580 ()[I
 CLASS com/fs/starfarer/ui/Oo0o com/fs/starfarer/ui/UiNotifyableRrr
-CLASS com/fs/starfarer/ui/OO0o com/fs/starfarer/ui/RenderableControlRrr
+	METHOD notifyShown notifyShown ()V
+CLASS com/fs/starfarer/ui/OO0o com/fs/starfarer/ui/PositionableControl
+	METHOD getFader getFader ()Lcom/fs/graphics/util/Fader;
+	METHOD getHeight getHeight ()F
+	METHOD getPosition getPosition ()Lcom/fs/starfarer/api/ui/PositionAPI;
+	METHOD getWidth getWidth ()F
+	METHOD getX getX ()F
+	METHOD getY getY ()F
+	METHOD render render (F)V
+	METHOD setOpacity setOpacity (F)V
+		ARG 1 value
+	METHOD setParent setParent (Lcom/fs/starfarer/ui/z;)V
+		ARG 1 parent
+	METHOD setPos setPos (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 zzzWhatTheFuckIsThatOhMyGod
+	METHOD setSize setSize (FF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 width
+		ARG 2 height
 CLASS com/fs/starfarer/ui/OO0O
 	FIELD for field10970 F
 	FIELD int field10968 Lcom/fs/starfarer/ui/OO0O;
@@ -32211,20 +32323,185 @@ CLASS com/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	FIELD while recomputeSuspended Z
 	FIELD Ø00000 alignThisX F
 	FIELD ØO0000 offsetX F
+	METHOD <init> (FF)V
+		ARG 1 width
+		ARG 2 height
+	METHOD <init> (FFFF)V
+		ARG 1 xAlignOffset
+		ARG 2 yAlignOffset
+		ARG 3 width
+		ARG 4 height
+	METHOD <init> (FFFFLcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 xAlignOffset
+		ARG 2 yAlignOffset
+		ARG 3 width
+		ARG 4 height
+		ARG 5 parent
+	METHOD <init> (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO$o;)V
+		ARG 1 zzzLastMove
+	METHOD aboveLeft aboveLeft (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD aboveMid aboveMid (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD aboveRight aboveRight (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
 	METHOD add addChild (ILcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 index
+		ARG 2 element
 	METHOD add addChild (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 element
+	METHOD atCenter atCenter (FFFFLcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 0 zzzX
+		ARG 1 zzzY
+		ARG 2 width
+		ARG 3 height
+		ARG 4 parent
+	METHOD belowLeft belowLeft (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD belowMid belowMid (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD belowRight belowRight (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD clearChildren clearChildren ()V
+	METHOD clone clone ()Ljava/lang/Object;
+	METHOD containsEvent containsEvent (Lcom/fs/starfarer/api/input/InputEventAPI;)Z
+		ARG 1 inputEventAPI
+	METHOD containsEvent containsEvent (Lcom/fs/starfarer/util/super/Object;)Z
+		ARG 1 zzzMouse
+	METHOD containsLocation containsLocation (FFFFFF)Z
+		ARG 1 locX
+		ARG 2 locY
+		ARG 3 offsetLeft
+		ARG 4 offsetRight
+		ARG 5 offsetTop
+		ARG 6 offsetBottom
+	METHOD containsMouse containsMouse ()Z
+	METHOD containsMouse containsMouse (FFFF)Z
+		ARG 1 offsetLeft
+		ARG 2 offsetRight
+		ARG 3 offsetTop
+		ARG 4 OffsetBottom
+	METHOD getBase getBase ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD getCenterX getCenterX ()F
+	METHOD getCenterY getCenterY ()F
+	METHOD getHeight getHeight ()F
+	METHOD getParent getParent ()Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD getWidth getWidth ()F
+	METHOD getX getX ()F
+	METHOD getXAlignOffset getXAlignOffset ()F
+	METHOD getXOffset getXOffset ()F
+	METHOD getY getY ()F
+	METHOD getYAlignOffset getYAlignOffset ()F
+	METHOD getYOffset getYOffset ()F
+	METHOD inBL inBL (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetLeft
+		ARG 2 offsetBottom
+	METHOD inBMid inBMid (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetBottom
+	METHOD inBR inBR (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 ofssetRight
+		ARG 2 offsetBottom
+	METHOD inLMid inLMid (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetLeft
+	METHOD inMid inMid ()Lcom/fs/starfarer/api/ui/PositionAPI;
+	METHOD inRMid inRMid (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetRight
+	METHOD intersects intersects (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)Z
+		ARG 1 zzzOther
+	METHOD inTL inTL (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetLeft
+		ARG 2 offsetTop
+	METHOD inTL (FF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		COMMENT Aligns element's top left corner to top left corner
+		COMMENT of the base element. Uses screen(?) if there's no base element.
+	METHOD inTMid inTMid (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offsetY
+	METHOD inTMid (F)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		COMMENT Aligns element's top center point to top center point
+		COMMENT of the base element. Uses screen(?) if there's no base element.
+	METHOD inTR inTR (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offterRight
+		ARG 2 offsetTop
 	METHOD isSuspendRecompute isRecomputeSuspended ()Z
 	METHOD isWithSort usesSort ()Z
+	METHOD leftOfBottom leftOfBottom (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD leftOfMid leftOfMid (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD leftOfTop leftOfTop (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+		ARG 2 offsetRight
+	METHOD main main ([Ljava/lang/String;)V
+		ARG 0 arr
 	METHOD o00000 anchor ()V
+	METHOD overlap overlap (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 other
+	METHOD parent parent (Lcom/fs/starfarer/ui/OO0o;)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 element
+	METHOD recompute recompute ()V
+	METHOD relativeTo relativeTo (Lcom/fs/starfarer/api/ui/UIComponentAPI;FFFFFF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 uIComponentAPI
+		ARG 2 alignParentX
+		ARG 3 alignParentY
+		ARG 4 alignThisX
+		ARG 5 alignThisY
+		ARG 6 xAlignOffset
+		ARG 7 yAlignOffset
+	METHOD relativeTo relativeTo (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;FFFFFF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 base
+		ARG 2 alignParentX
+		ARG 3 alignParentY
+		ARG 4 alignThisX
+		ARG 5 alignThisY
+		ARG 6 xAlignOffset
+		ARG 7 yAlignOffset
 	METHOD remove removeChild (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 element
+	METHOD rightOfBottom rightOfBottom (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD rightOfMid rightOfMid (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD rightOfTop rightOfTop (Lcom/fs/starfarer/api/ui/UIComponentAPI;F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 uIComponentAPI
+	METHOD set set (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 other
+	METHOD setAlignOffset setAlignOffset (FF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 xOffset
+		ARG 2 yOffset
+	METHOD setAlignThis setAlignThis (FF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 alignThisX
+		ARG 2 alignThisY
 	METHOD setLocation setPosition (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 x
+		ARG 2 y
+	METHOD setOffset setOffset (FF)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 offsetX
+		ARG 2 offsetY
+	METHOD setParent setParent (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+		ARG 1 element
 	METHOD setRoundCoordinates setRoundsPosition (Z)V
+		ARG 1 roundsPosition
+	METHOD setSize setSize (FF)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 width
+		ARG 2 height
 	METHOD setSuspendRecompute setRecomputeSuspended (Z)V
+		ARG 1 suspendRecompute
 	METHOD setWithSort setUsesSort (Z)V
+		ARG 1 usesSort
 	METHOD setWithSortHelper setUsesSortHelper (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;Z)V
+		ARG 1 other
+		ARG 2 usesSort
 	METHOD setWithSortRecurvsive setUsesSortRecursive (Z)V
+		ARG 1 usesSort
+	METHOD setXAlignOffset setXAlignOffset (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offset
+	METHOD setYAlignOffset setYAlignOffset (F)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 offset
 	CLASS o Recomputed
 		METHOD locationChanged movedOrResized ()V
+		METHOD sizeChanged sizeChanged (FF)V
+			ARG 1 newWidth
+			ARG 2 newHeight
 CLASS com/fs/starfarer/ui/ooO0
 	FIELD for.null field2443 Ljava/lang/String;
 	FIELD int.null field2440 Z
@@ -32395,7 +32672,12 @@ CLASS com/fs/starfarer/ui/returnnew
 	FIELD return.int field1772 Lcom/fs/graphics/util/Fader;
 	FIELD ØOO000 field1771 Lcom/fs/graphics/util/Fader;
 	FIELD ø0O000 field1774 Ljava/lang/String;
-CLASS com/fs/starfarer/ui/S com/fs/starfarer/ui/UiControlRrr
+CLASS com/fs/starfarer/ui/S com/fs/starfarer/ui/BaseControl
+	METHOD advance advance (F)V
+		ARG 1 days
+	METHOD focusLost focusLost ()V
+	METHOD processInput processInput (Lcom/fs/starfarer/util/super/B;)V
+		ARG 1 events
 CLASS com/fs/starfarer/ui/Stringnew com/fs/starfarer/ui/ButtonPanelRrr
 	FIELD return.return field7363 Lcom/fs/starfarer/ui/Stringnew$o;
 	FIELD Øô0000 field7364 Ljava/awt/Color;
@@ -32764,32 +33046,48 @@ CLASS com/fs/starfarer/ui/T
 	FIELD this.null$float field1639 Lcom/fs/starfarer/ui/d;
 	FIELD øôõO00 field1638 F
 CLASS com/fs/starfarer/ui/thissuper com/fs/starfarer/ui/UiTooltip
-	FIELD for.class field1737 Lcom/fs/graphics/util/Fader;
-	FIELD for.return field1744 Z
+	FIELD created created Z
+	FIELD for.class fader2Rrr Lcom/fs/graphics/util/Fader;
+	FIELD for.return isUnknownDoneRrr Z
 	FIELD int.return field1742 Lcom/fs/util/container/repo/ObjectRepository;
-	FIELD Object.return field1746 I
+	FIELD Object.return slideProgressRrr I
 	FIELD oô0000 field1754 Lcom/fs/starfarer/ui/OO0o;
-	FIELD oõ0000 field1753 Lorg/lwjgl/util/vector/Vector2f;
+	FIELD oõ0000 vec2Rrr Lorg/lwjgl/util/vector/Vector2f;
 	FIELD Òô0000 field1749 F
 	FIELD Òõ0000 field1750 F
 	FIELD ôô0000 field1739 F
-	FIELD Ôô0000 field1741 Lcom/fs/starfarer/ui/z;
+	FIELD Ôô0000 parent Lcom/fs/starfarer/ui/z;
 	FIELD Ôõ0000 field1733 Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
-	FIELD öô0000 field1752 Lorg/lwjgl/util/vector/Vector2f;
-	FIELD Õô0000 field1745 Z
-	FIELD ôØ0000 field1743 F
+	FIELD öô0000 vec1Rrr Lorg/lwjgl/util/vector/Vector2f;
+	FIELD Õô0000 isUnknownNotStartedRrr Z
+	FIELD ôØ0000 opacity F
 	FIELD öØ0000 field1748 F
-	FIELD ÕØ0000 field1738 Lcom/fs/graphics/util/Fader;
+	FIELD ÕØ0000 fader3Rrr Lcom/fs/graphics/util/Fader;
 	FIELD public.class field1751 Z
 	FIELD public.return field1735 Lcom/fs/starfarer/ui/classsuper;
 	FIELD return.return field1755 Lcom/fs/starfarer/ui/classsuper;
+	FIELD SOURCE_UPDATE_POSITION_ONLY SOURCE_UPDATE_POSITION_ONLY Ljava/lang/Object;
 	FIELD this.return field1734 Lcom/fs/starfarer/ui/Oo0o;
 	FIELD Øô0000 field1740 F
 	FIELD ØØ0000 field1747 F
-	FIELD øô0000 field1736 Lcom/fs/graphics/util/Fader;
+	FIELD øô0000 fader1Rrr Lcom/fs/graphics/util/Fader;
 	FIELD øØ0000 field1756 Z
+	METHOD <init> (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;)V
+		ARG 1 rect
+	METHOD advanceImpl advanceImpl (F)V
+		ARG 1 days
 	METHOD float.new method162 ()Z
+	METHOD forceRemoveTooltip forceRemoveTooltip (Lcom/fs/starfarer/ui/OO0o;)V
+	METHOD forceSlideIn forceSlideIn ()V
+	METHOD getOpacity getOpacity ()F
+	METHOD getParent getParent ()Lcom/fs/starfarer/ui/z;
+	METHOD isSliding isSliding ()Z
 	METHOD öÒ0000 method163 ()V
+	METHOD processInputImpl processInputImpl (Lcom/fs/starfarer/util/super/B;)V
+		ARG 1 events
+	METHOD renderImpl renderImpl (F)V
+	METHOD setFader setFader (Lcom/fs/graphics/util/Fader;)V
+		ARG 1 fader
 CLASS com/fs/starfarer/ui/u
 	FIELD for.void field7296 F
 	FIELD int.void field7285 F
@@ -32911,8 +33209,18 @@ CLASS com/fs/starfarer/ui/Y
 	FIELD super.private$while field6320 Ljava/lang/String;
 	FIELD void.private$while field6319 Ljava/lang/String;
 CLASS com/fs/starfarer/ui/z com/fs/starfarer/ui/UiTooltipMaybeCodexRelatedRrr
+	FIELD needToCopy needToCopy Z
 	FIELD öOO000 field23 Ljava/util/List;
 	FIELD øOO000 field24 Z
+	METHOD <init> (Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;Lcom/fs/starfarer/ui/z;)V
+		ARG 1 rect
+	METHOD add add (Lcom/fs/starfarer/ui/OO0o;)Lcom/fs/starfarer/ui/OO0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO;
+	METHOD addComponent addComponent (Lcom/fs/starfarer/api/ui/UIComponentAPI;)Lcom/fs/starfarer/api/ui/PositionAPI;
+		ARG 1 comp
+	METHOD clearChildren clearChildren ()V
+	METHOD remove remove (Lcom/fs/starfarer/ui/OO0o;)V
+	METHOD removeComponent removeComponent (Lcom/fs/starfarer/api/ui/UIComponentAPI;)V
+		ARG 1 comp
 	CLASS 1
 		FIELD Õ0Øo00 field6556 Lcom/fs/starfarer/ui/z;
 		FIELD this.void$private field6557 Lcom/fs/starfarer/api/fleet/FleetMemberAPI;
@@ -33178,7 +33486,6 @@ CLASS com/fs/starfarer/util/super/Object com/fs/starfarer/util/InputEvent
 	FIELD class field1578 I
 	FIELD float shiftDown Z
 	FIELD interface field1587 Lcom/fs/starfarer/settings/A;
-	FIELD interface field11051 Lcom/fs/starfarer/settings/super;
 	FIELD new x I
 	FIELD null field1577 I
 	FIELD Ó00000 type Lcom/fs/starfarer/api/input/InputEventType;
@@ -33187,13 +33494,68 @@ CLASS com/fs/starfarer/util/super/Object com/fs/starfarer/util/InputEvent
 	FIELD Ö00000 field1584 Z
 	FIELD õ00000 field1588 Lorg/apache/log4j/Logger;
 	FIELD oO0000 kind Lcom/fs/starfarer/api/input/InputEventClass;
-	FIELD OO0000 charRrr C
+	FIELD OO0000 zzzChar C
 	FIELD ÓO0000 altDown Z
 	FIELD ÔO0000 ctrlDown Z
 	FIELD while isConsumed Z
 	FIELD Ø00000 mouseKey I
+		COMMENT LMB = 0
+		COMMENT RMB = 1
+	METHOD clone clone ()Ljava/lang/Object;
+	METHOD consume consume ()V
+	METHOD getDX getDX ()I
+	METHOD getDY getDY ()I
+	METHOD getEventChar getEventChar ()C
+	METHOD getEventType getEventType ()Lcom/fs/starfarer/api/input/InputEventType;
+	METHOD getEventValue getEventValue ()I
+	METHOD getMouseX getMouseX ()I
+	METHOD getMouseY getMouseY ()I
+	METHOD getX getX ()I
+	METHOD getY getY ()I
+	METHOD isAltDown isAltDown ()Z
+	METHOD isConsumed isConsumed ()Z
+	METHOD isControlActivated isControlActivated (Ljava/lang/String;)Z
+	METHOD isControlDownEvent isControlDownEvent (Ljava/lang/String;)Z
+	METHOD isControlUpEvent isControlUpEvent (Ljava/lang/String;)Z
+	METHOD isCtrlDown isCtrlDown ()Z
+	METHOD isDoubleClick isDoubleClick ()Z
+	METHOD isEnforceConsume isEnforceConsume ()Z
+	METHOD isKeyboardEvent isKeyboardEvent ()Z
+	METHOD isKeyDownEvent isKeyDownEvent ()Z
+	METHOD isKeyUpEvent isKeyUpEvent ()Z
+	METHOD isLMBDownEvent isLMBDownEvent ()Z
+	METHOD isLMBEvent isLMBEvent ()Z
+	METHOD isLMBUpEvent isLMBUpEvent ()Z
+	METHOD isMouseDownEvent isMouseDownEvent ()Z
+	METHOD isMouseEvent isMouseEvent ()Z
+	METHOD isMouseMoveEvent isMouseMoveEvent ()Z
+	METHOD isMouseScrollEvent isMouseScrollEvent ()Z
+	METHOD isMouseUpEvent isMouseUpEvent ()Z
+	METHOD isRepeat isRepeat ()Z
+	METHOD isRMBDownEvent isRMBDownEvent ()Z
+	METHOD isRMBEvent isRMBEvent ()Z
+	METHOD isRMBUpEvent isRMBUpEvent ()Z
+	METHOD isShiftDown isShiftDown ()Z
+	METHOD isUnmodified isUnmodified ()Z
 	METHOD o00000 assertNotConsumed ()V
-	METHOD super method985 ()V
+	METHOD setAltDown setAltDown (Z)V
+		ARG 1 value
+	METHOD setCtrlDown setCtrlDown (Z)V
+		ARG 1 value
+	METHOD setDoubleClick setDoubleClick (Z)V
+		ARG 1 value
+	METHOD setEnforceConsume setEnforceConsume (Z)V
+		ARG 0 value
+	METHOD setEventChar setEventChar (C)V
+		ARG 1 character
+	METHOD setEventType setEventType (Lcom/fs/starfarer/api/input/InputEventType;)V
+		ARG 1 inputEventType
+	METHOD setEventValue setEventValue (I)V
+		ARG 1 value
+	METHOD setShiftDown setShiftDown (Z)V
+		ARG 1 value
+	METHOD setX setX (I)V
+		ARG 1 value
 CLASS com/fs/starfarer/util/Tesselator
 	FIELD class field11754 Ljava/util/Random;
 	FIELD new field11756 F
@@ -33267,6 +33629,12 @@ CLASS com/fs/starfarer/util/while mapped/Class5371
 	METHOD new method5850 (Ljava/lang/String;F)Lcom/fs/starfarer/util/while;
 	METHOD new method5852 (Ljava/lang/String;Ljava/lang/String;)V
 	METHOD Ó00000 method5851 (Ljava/lang/String;F)Lcom/fs/starfarer/util/while;
+CLASS com/fs/state/AppDriver
+CLASS com/fs/state/AppState
+	METHOD getID getID ()Ljava/lang/String;
+	METHOD goToState goToState (Ljava/lang/String;)V
+	METHOD init init (Ljava/util/Map;)V
+	METHOD traverse traverse ()Ljava/lang/String;
 CLASS com/fs/util/container/Pair
 	FIELD one a Ljava/lang/Object;
 	FIELD two b Ljava/lang/Object;

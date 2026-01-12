@@ -20,7 +20,7 @@ fi
 # check args
 if [ $# -ne 2 ]; 
   then
-    printf "ERROR: Expected 2 arguments, received %s. Provide exactly 2 arguments: \n(1) source directory containing JARs and \n(2) output directory for the project.\n" $#
+    printf "ERROR: Expected 2 arguments, received %s. Provide exactly 2 arguments: \n(1) source directory containing JARs and \n(2) output JAR filepath.\n" $#
     exit 1
 fi
 
